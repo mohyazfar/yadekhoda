@@ -1,0 +1,385 @@
+/* ============================================
+reminders.css - صفحه یادآورها
+============================================ */
+
+/* ===== هدر ===== */
+.reminders-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: clamp(4px, 0.8vh, 10px) clamp(12px, 2.5vw, 20px);
+    border-bottom: 2px solid var(--border-color-strong);
+    flex-shrink: 0;
+    background: var(--bg-card);
+    box-shadow: 0 2px 16px var(--shadow-color), 0 0 30px var(--primary-color-glow);
+    min-height: clamp(38px, 5.6vh, 50px);
+    width: 100%;
+    direction: rtl;
+}
+
+.reminders-header-left {
+    display: flex;
+    gap: clamp(8px, 1.5vw, 14px);
+    align-items: center;
+    justify-content: flex-start;
+    order: 1;
+}
+
+.reminders-header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(6px, 1vw, 12px);
+    order: 0;
+}
+
+.reminders-header-count-text {
+    font-size: clamp(14px, 2.2vw, 18px);
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    white-space: nowrap;
+}
+
+.reminders-header-count-text .count-number {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: clamp(18px, 3vw, 24px);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+}
+
+.reminders-header-btn {
+    width: clamp(40px, 7vw, 52px);
+    height: clamp(40px, 7vw, 52px);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s ease;
+    box-shadow: 0 2px 12px var(--shadow-color), 0 0 20px var(--primary-color-glow);
+    border: 2px solid var(--border-color-strong);
+    flex-shrink: 0;
+    touch-action: manipulation;
+    background: transparent;
+}
+
+.reminders-header-btn:active {
+    transform: scale(.92);
+}
+
+.reminders-header-btn svg {
+    display: block;
+    fill: none;
+    transition: all .2s ease;
+    width: clamp(24px, 4vw, 32px);
+    height: clamp(24px, 4vw, 32px);
+    stroke: var(--text-primary);
+}
+
+.reminders-header-btn.add-btn {
+    border: 2px solid var(--border-color-strong);
+    background: transparent;
+}
+
+.reminders-header-btn.add-btn svg {
+    stroke: var(--text-primary);
+}
+
+.reminders-header-btn.add-btn:active {
+    transform: scale(.92);
+}
+
+/* ===== محتوای اصلی ===== */
+.remindersMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(8px, 1.8vh, 20px) clamp(8px, 2vw, 20px);
+    overflow-y: auto;
+    gap: clamp(8px, 1.2vh, 14px);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    min-height: 0;
+}
+
+.remindersMain::-webkit-scrollbar {
+    display: none;
+}
+
+#remindersListContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.2vh, 14px);
+    overflow-y: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    min-height: 0;
+}
+
+#remindersListContainer::-webkit-scrollbar {
+    display: none;
+}
+
+/* ===== آیتم یادآور ===== */
+.reminder-item {
+    border: 2px solid var(--border-color-strong);
+    border-radius: clamp(10px, 2vh, 16px);
+    padding: clamp(12px, 2vh, 18px) clamp(14px, 2.5vw, 20px);
+    transition: all .2s ease;
+    position: relative;
+    box-shadow: 0 2px 8px var(--shadow-color), 0 0 40px var(--primary-color-glow);
+    background: var(--bg-card);
+    flex-shrink: 0;
+}
+
+.reminder-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.reminder-item-title {
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    direction: rtl;
+    line-height: 1.4;
+    flex: 1;
+}
+
+.reminder-item-status {
+    font-size: clamp(11px, 1.4vw, 14px);
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.reminder-item-status.active {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.reminder-item-status.inactive {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.reminder-item-time {
+    font-size: clamp(18px, 2.8vw, 26px);
+    font-weight: 700;
+    color: var(--primary-color);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    direction: ltr;
+    margin-top: clamp(2px, 0.3vh, 4px);
+}
+
+.reminder-item-repeat {
+    font-size: clamp(12px, 1.6vw, 15px);
+    color: var(--text-secondary);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    margin-top: clamp(2px, 0.3vh, 4px);
+}
+
+.reminder-item-divider {
+    width: 100%;
+    height: 2px;
+    background: var(--border-color-strong);
+    margin: clamp(8px, 1vh, 12px) 0;
+    opacity: 0.3;
+    border: none;
+}
+
+.reminder-item-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 6px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.reminder-item-left {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.reminder-item-right {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.reminder-item-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+    transition: all .2s ease;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(34px, 5vw, 44px);
+    height: clamp(34px, 5vw, 44px);
+    border-radius: 6px;
+}
+
+.reminder-item-btn:active {
+    transform: scale(.85);
+}
+
+.reminder-item-btn svg {
+    width: clamp(20px, 3vw, 28px);
+    height: clamp(20px, 3vw, 28px);
+    display: block;
+    transition: all .2s ease;
+}
+
+.reminder-item-btn.toggle svg {
+    stroke: var(--primary-color);
+}
+
+.reminder-item-btn.delete svg {
+    stroke: #ef4444;
+}
+
+.reminder-empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(14px, 3vh, 24px);
+    text-align: center;
+    padding: clamp(18px, 4vh, 36px);
+}
+
+.reminder-empty-icon {
+    font-size: clamp(44px, 10vw, 68px);
+    opacity: .3;
+}
+
+.reminder-empty-text {
+    font-size: clamp(16px, 3vw, 22px);
+    color: var(--text-secondary);
+    line-height: 1.8;
+    max-width: 320px;
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+}
+
+.reminder-empty-text .highlight {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* ============================================
+===== دیالوگ افزودن یادآور =====
+============================================ */
+
+.reminder-dialog-content {
+    text-align: right;
+    direction: rtl;
+}
+
+.reminder-dialog-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+}
+
+.reminder-dialog-group label {
+    font-size: clamp(13px, 1.8vw, 16px);
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+}
+
+.reminder-dialog-group select,
+.reminder-dialog-group input {
+    padding: clamp(8px, 1.2vh, 12px) clamp(10px, 1.5vw, 14px);
+    border: 2px solid var(--border-color-strong);
+    border-radius: clamp(8px, 1.5vh, 12px);
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-size: clamp(15px, 2.2vw, 18px);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    outline: none;
+    transition: all .3s ease;
+    width: 100%;
+}
+
+.reminder-dialog-group select:focus,
+.reminder-dialog-group input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px var(--primary-color-alpha);
+}
+
+.reminder-dialog-group input[type="time"] {
+    direction: ltr;
+    text-align: center;
+}
+
+.reminder-dialog-group .repeat-days {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.reminder-dialog-group .repeat-day-btn {
+    width: clamp(36px, 5vw, 44px);
+    height: clamp(36px, 5vw, 44px);
+    border-radius: 50%;
+    border: 2px solid var(--border-color-strong);
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: clamp(11px, 1.4vw, 14px);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s ease;
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+}
+
+.reminder-dialog-group .repeat-day-btn:active {
+    transform: scale(.9);
+}
+
+.reminder-dialog-group .repeat-day-btn.active {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: #ffffff;
+    box-shadow: 0 0 20px var(--primary-color-alpha);
+}
+
+/* ============================================
+===== حالت روشن/تاریک =====
+============================================ */
+
+body.light .reminders-header-bar {
+    background: var(--bg-card);
+}
+
+body.light .reminder-item {
+    background: var(--bg-card);
+}
+
+body.dark .reminders-header-bar {
+    background: transparent;
+}
+
+body.dark .reminder-item {
+    background: var(--bg-card);
+}

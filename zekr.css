@@ -1,0 +1,829 @@
+/* ============================================
+zekr.css - استایل‌های صفحه ذکرها (نسخه کامل اصلاح‌شده)
+============================================ */
+
+/* ===== هدر صفحه ذکرها ===== */
+.zekr-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: clamp(4px, 0.8vh, 10px) clamp(12px, 2.5vw, 20px);
+    border-bottom: 2px solid var(--border-color-strong);
+    flex-shrink: 0;
+    background: var(--bg-card);
+    box-shadow: 0 2px 16px var(--shadow-color), 0 0 30px var(--primary-color-glow);
+    min-height: clamp(38px, 5.6vh, 50px);
+    width: 100%;
+    direction: rtl;
+}
+
+.zekr-header-left {
+    display: flex;
+    gap: clamp(8px, 1.5vw, 14px);
+    align-items: center;
+    justify-content: flex-start;
+    order: 1;
+}
+
+.zekr-header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(6px, 1vw, 12px);
+    order: 0;
+}
+
+.zekr-header-count-text {
+    font-size: clamp(14px, 2.2vw, 18px);
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    white-space: nowrap;
+}
+
+.zekr-header-count-text .count-number {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: clamp(18px, 3vw, 24px);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+}
+
+.zekr-header-btn {
+    width: clamp(40px, 7vw, 52px);
+    height: clamp(40px, 7vw, 52px);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s ease;
+    box-shadow: 0 2px 12px var(--shadow-color), 0 0 20px var(--primary-color-glow);
+    border: 2px solid var(--border-color-strong);
+    flex-shrink: 0;
+    touch-action: manipulation;
+    background: transparent;
+}
+
+.zekr-header-btn:active {
+    transform: scale(.92);
+}
+
+.zekr-header-btn svg {
+    display: block;
+    fill: none;
+    transition: all .2s ease;
+    width: clamp(24px, 4vw, 32px);
+    height: clamp(24px, 4vw, 32px);
+    stroke: var(--text-primary);
+}
+
+.zekr-header-btn.active {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    box-shadow: 0 0 30px var(--primary-color-alpha), 0 0 50px var(--primary-color-glow-strong);
+}
+
+.zekr-header-btn.active svg {
+    stroke: #ffffff;
+    fill: none;
+}
+
+.zekr-header-btn.add-btn {
+    border: 2px solid var(--border-color-strong);
+    background: transparent;
+}
+
+.zekr-header-btn.add-btn svg {
+    stroke: var(--text-primary);
+}
+
+.zekr-header-btn.add-btn:active {
+    transform: scale(.92);
+}
+
+#zekrFavoriteFilterBtn {
+    background: transparent !important;
+    border: 2px solid var(--border-color-strong) !important;
+    box-shadow: 0 2px 12px var(--shadow-color), 0 0 20px var(--primary-color-glow) !important;
+    transition: all 0.2s ease;
+}
+
+#zekrFavoriteFilterBtn svg {
+    width: clamp(24px, 4vw, 32px);
+    height: clamp(24px, 4vw, 32px);
+    display: block;
+    transition: all 0.2s ease;
+}
+
+#zekrFavoriteFilterBtn:not(.active) svg {
+    stroke: var(--text-primary) !important;
+    fill: none !important;
+}
+
+#zekrFavoriteFilterBtn.active {
+    border-color: var(--primary-color) !important;
+    background: var(--primary-color) !important;
+    box-shadow: 0 0 30px var(--primary-color-alpha), 0 0 50px var(--primary-color-glow-strong) !important;
+}
+
+#zekrFavoriteFilterBtn.active svg {
+    stroke: #ffffff !important;
+    fill: #ffffff !important;
+}
+
+/* ===== محتوای اصلی ===== */
+.zekrMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(8px, 1.8vh, 20px) clamp(8px, 2vw, 20px);
+    overflow-y: auto;
+    gap: clamp(8px, 1.2vh, 14px);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    min-height: 0;
+}
+
+.zekrMain::-webkit-scrollbar {
+    display: none;
+}
+
+#zekrListContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.2vh, 14px);
+    overflow-y: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    min-height: 0;
+}
+
+#zekrListContainer::-webkit-scrollbar {
+    display: none;
+}
+
+/* ===== آیتم ذکر ===== */
+.zekr-item {
+    border: 2px solid var(--border-color-strong);
+    border-radius: clamp(10px, 2vh, 16px);
+    padding: clamp(10px, 2vh, 18px) clamp(12px, 2.5vw, 20px);
+    transition: all .2s ease;
+    position: relative;
+    box-shadow: 0 2px 8px var(--shadow-color), 0 0 40px var(--primary-color-glow);
+    background: var(--bg-card);
+    flex-shrink: 0;
+}
+
+.zekr-item-checkbox-wrapper {
+    position: absolute;
+    top: clamp(14px, 2vh, 22px);
+    left: clamp(8px, 1.5vw, 14px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(32px, 4.5vw, 40px);
+    height: clamp(32px, 4.5vw, 40px);
+    flex-shrink: 0;
+}
+
+.zekr-item-checkbox {
+    width: clamp(26px, 3.8vw, 34px);
+    height: clamp(26px, 3.8vw, 34px);
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.2s ease;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0;
+    box-shadow: none !important;
+    transform-style: preserve-3d;
+}
+
+.zekr-item-checkbox svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    stroke: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.zekr-item-checkbox.checked svg {
+    stroke: var(--primary-color);
+}
+
+.zekr-item-checkbox.checked {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.zekr-item.select-mode .zekr-item-checkbox {
+    display: flex;
+}
+
+.zekr-item-checkbox:active {
+    transform: scale(0.9);
+}
+
+.zekr-item-checkbox.flip-3d {
+    animation: flip3D 0.5s ease forwards;
+    perspective: 400px;
+}
+
+@keyframes flip3D {
+    0% { transform: rotateY(0deg) scale(1); }
+    25% { transform: rotateY(90deg) scale(1.1); }
+    50% { transform: rotateY(180deg) scale(1.2); }
+    75% { transform: rotateY(270deg) scale(1.05); }
+    100% { transform: rotateY(360deg) scale(1); }
+}
+
+.zekr-item-checkbox .check-mark {
+    animation: checkSwing 0.4s ease forwards;
+}
+
+@keyframes checkSwing {
+    0% { transform: rotate(-90deg) scale(0); opacity: 0; }
+    50% { transform: rotate(15deg) scale(1.2); opacity: 1; }
+    75% { transform: rotate(-5deg) scale(0.9); }
+    100% { transform: rotate(0deg) scale(1); opacity: 1; }
+}
+
+.zekr-item.select-mode .zekr-item-btn,
+.zekr-item.select-mode .zekr-item-star,
+.zekr-item.select-mode .zekr-item-target,
+.zekr-item.select-mode .zekr-item-stat {
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.zekr-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    flex-direction: column;
+    padding-left: clamp(48px, 6vw, 60px);
+}
+
+.zekr-item-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.zekr-item-text {
+    font-size: clamp(20px, 4vw, 34px);
+    font-weight: bold;
+    font-family: 'Quran','Love',Tahoma,'Vazirmatn',sans-serif;
+    color: var(--text-primary);
+    direction: rtl;
+    line-height: 1.6;
+}
+
+.zekr-item-meaning {
+    font-size: clamp(14px, 2.2vw, 18px);
+    color: var(--text-secondary);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    direction: rtl;
+    line-height: 1.5;
+    padding-bottom: clamp(6px, 1vh, 10px);
+}
+
+.zekr-item-divider {
+    width: 100%;
+    height: 2px;
+    background: var(--border-color-strong);
+    margin: clamp(6px, 0.8vh, 10px) 0;
+    opacity: 0.4;
+    border: none;
+}
+
+.zekr-item-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 6px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: clamp(4px, 0.6vh, 8px);
+}
+
+.zekr-item-left {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    flex-wrap: wrap;
+    order: 0;
+}
+
+.zekr-item-right {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+    order: 1;
+}
+
+.zekr-item-stat {
+    font-size: clamp(13px, 2vw, 17px);
+    color: var(--text-secondary);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    cursor: pointer;
+    padding: 3px 6px;
+    border-radius: 4px;
+    transition: all .2s ease;
+}
+
+.zekr-item-stat .stat-number {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.zekr-item-stat:hover {
+    background: var(--primary-color-alpha);
+}
+
+.zekr-item-target {
+    font-size: clamp(13px, 2vw, 17px);
+    color: var(--text-secondary);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    padding: 3px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.zekr-item-target .target-number {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.zekr-item-target:hover {
+    background: var(--primary-color-alpha);
+}
+
+.zekr-item-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+    transition: all .2s ease;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(34px, 5vw, 44px);
+    height: clamp(34px, 5vw, 44px);
+    border-radius: 6px;
+}
+
+.zekr-item-btn:hover {
+    transform: scale(1.05);
+}
+
+.zekr-item-btn:active {
+    transform: scale(.85);
+}
+
+.zekr-item-btn svg {
+    width: clamp(26px, 4vw, 36px);
+    height: clamp(26px, 4vw, 36px);
+    display: block;
+    transition: all .2s ease;
+}
+
+.zekr-item-btn.edit svg {
+    fill: var(--primary-color);
+    color: var(--primary-color);
+    stroke: var(--primary-color);
+}
+
+.zekr-item-btn.edit:hover svg {
+    fill: var(--primary-color);
+    opacity: 0.8;
+}
+
+.zekr-item-btn.delete svg {
+    fill: var(--primary-color);
+    color: var(--primary-color);
+    stroke: var(--primary-color);
+}
+
+.zekr-item-btn.delete:hover svg {
+    fill: var(--primary-color);
+    opacity: 0.8;
+}
+
+.zekr-item-btn.share svg {
+    fill: var(--primary-color);
+    color: var(--primary-color);
+    stroke: var(--primary-color);
+}
+
+.zekr-item-btn.share:hover svg {
+    fill: var(--primary-color);
+    opacity: 0.8;
+}
+
+.zekr-item-star {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+    transition: all .2s ease;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(34px, 5vw, 44px);
+    height: clamp(34px, 5vw, 44px);
+    border-radius: 6px;
+    position: relative;
+}
+
+.zekr-item-star:hover {
+    transform: scale(1.05);
+    background: var(--primary-color-alpha);
+}
+
+.zekr-item-star:active {
+    transform: scale(.85);
+}
+
+.zekr-item-star svg {
+    width: clamp(26px, 4vw, 36px);
+    height: clamp(26px, 4vw, 36px);
+    display: block;
+    transition: all .2s ease;
+}
+
+.zekr-item-star:not(.active) svg {
+    fill: none !important;
+    stroke: var(--primary-color) !important;
+}
+
+.zekr-item-star.active svg {
+    fill: var(--primary-color) !important;
+    stroke: var(--primary-color) !important;
+    filter: drop-shadow(0 0 10px rgba(var(--primary-rgb), 0.5));
+}
+
+.zekr-item-star.heart-pulse {
+    animation: heartPulse 0.4s ease forwards;
+}
+
+@keyframes heartPulse {
+    0% { transform: scale(1); }
+    20% { transform: scale(1.25); }
+    40% { transform: scale(0.9); }
+    60% { transform: scale(1.15); }
+    80% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.heart-particle {
+    position: fixed;
+    pointer-events: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: particleFloat 0.8s ease-out forwards;
+    z-index: 999;
+}
+
+@keyframes particleFloat {
+    0% { transform: translate(0, 0) scale(0.5); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(1.5); opacity: 0; }
+}
+
+.zekr-item.is-default .zekr-item-btn.edit {
+    display: none;
+}
+
+/* ===== فوتر انتخاب ===== */
+.zekr-selection-footer {
+    display: none;
+    flex-shrink: 0;
+    padding: clamp(6px, 1vh, 12px) clamp(12px, 2.5vw, 20px);
+    border-top: 2px solid var(--border-color-strong);
+    background: var(--bg-card);
+    box-shadow: 0 -4px 20px var(--shadow-color);
+    gap: clamp(4px, 0.8vw, 10px);
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+    min-height: clamp(44px, 6vh, 56px);
+}
+
+.zekr-selection-footer.show {
+    display: flex !important;
+}
+
+.zekr-selection-count {
+    font-size: clamp(22px, 4vw, 34px);
+    font-weight: 900;
+    color: var(--primary-color);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    min-width: 35px;
+    text-align: center;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: 4;
+}
+
+.zekr-selection-btn {
+    padding: clamp(6px, 1vh, 10px) clamp(12px, 1.8vw, 16px);
+    border-radius: clamp(10px, 2vh, 14px);
+    font-size: clamp(11px, 1.6vw, 14px);
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    transition: all .2s ease;
+    border: 2px solid var(--border-color-strong);
+    background: transparent;
+    min-width: 60px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: clamp(38px, 5.5vh, 48px);
+}
+
+.zekr-selection-btn:active {
+    transform: scale(.95);
+}
+
+.zekr-selection-btn.select-all {
+    border-color: var(--primary-color);
+    min-width: 60px;
+    padding: clamp(6px, 1vh, 10px) clamp(10px, 1.5vw, 14px);
+    order: 3;
+}
+
+.zekr-selection-btn.select-all svg {
+    stroke: var(--primary-color);
+    width: clamp(18px, 2.5vw, 22px);
+    height: clamp(18px, 2.5vw, 22px);
+}
+
+.zekr-selection-btn.select-all.active {
+    background: var(--primary-color);
+    color: #ffffff !important;
+}
+
+.zekr-selection-btn.select-all.active svg {
+    stroke: #ffffff;
+}
+
+.zekr-selection-btn.select-all:active {
+    background: var(--primary-color-alpha);
+}
+
+.zekr-selection-btn.share {
+    border-color: var(--primary-color);
+    opacity: 0.4;
+    pointer-events: none;
+    transition: all .3s ease;
+    order: 2;
+}
+
+.zekr-selection-btn.share.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.zekr-selection-btn.share:active {
+    background: var(--primary-color-alpha);
+}
+
+.zekr-selection-btn.share svg {
+    stroke: var(--primary-color);
+    width: clamp(18px, 2.5vw, 22px);
+    height: clamp(18px, 2.5vw, 22px);
+}
+
+.zekr-selection-btn.delete {
+    border-color: #ef4444;
+    opacity: 0.4;
+    pointer-events: none;
+    transition: all .3s ease;
+    order: 1;
+}
+
+.zekr-selection-btn.delete.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.zekr-selection-btn.delete:active {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.zekr-selection-btn.delete svg {
+    stroke: #ef4444;
+    width: clamp(18px, 2.5vw, 22px);
+    height: clamp(18px, 2.5vw, 22px);
+}
+
+/* ============================================
+===== حالت روشن =====
+============================================ */
+
+body.light .zekr-header-bar {
+    background: var(--bg-card);
+    border-bottom: 2px solid var(--border-color-strong);
+}
+
+body.light .zekr-header-btn {
+    background: transparent;
+    border: 2px solid var(--border-color-strong);
+}
+
+body.light .zekr-header-btn svg {
+    stroke: var(--text-primary);
+}
+
+body.light .zekr-header-btn.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+body.light .zekr-header-btn.active svg {
+    stroke: #ffffff;
+}
+
+body.light .zekr-header-btn.add-btn {
+    background: transparent;
+    border: 2px solid var(--border-color-strong);
+}
+
+body.light .zekr-header-btn.add-btn svg {
+    stroke: var(--text-primary);
+}
+
+body.light #zekrFavoriteFilterBtn:not(.active) svg {
+    stroke: var(--text-primary) !important;
+    fill: none !important;
+}
+
+body.light #zekrFavoriteFilterBtn.active svg {
+    stroke: #ffffff !important;
+    fill: #ffffff !important;
+}
+
+body.light .zekr-header-count-text {
+    color: var(--text-primary);
+}
+
+body.light .zekr-item {
+    background: var(--bg-card);
+}
+
+body.light .zekr-selection-footer {
+    background: var(--bg-card);
+    border-top: 2px solid var(--border-color-strong);
+}
+
+body.light .zekr-selection-btn {
+    color: var(--text-primary) !important;
+}
+
+/* ============================================
+===== حالت تاریک =====
+============================================ */
+
+body.dark .zekr-header-bar {
+    background: transparent;
+    border-bottom: 2px solid var(--border-color-strong);
+}
+
+body.dark .zekr-header-btn {
+    background: transparent;
+    border: 2px solid var(--border-color-strong);
+}
+
+body.dark .zekr-header-btn svg {
+    stroke: var(--text-primary);
+}
+
+body.dark .zekr-header-btn.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+body.dark .zekr-header-btn.active svg {
+    stroke: #ffffff;
+}
+
+body.dark .zekr-header-btn.add-btn {
+    background: transparent;
+    border: 2px solid var(--border-color-strong);
+}
+
+body.dark .zekr-header-btn.add-btn svg {
+    stroke: var(--text-primary);
+}
+
+body.dark #zekrFavoriteFilterBtn:not(.active) svg {
+    stroke: var(--text-primary) !important;
+    fill: none !important;
+}
+
+body.dark #zekrFavoriteFilterBtn.active svg {
+    stroke: #ffffff !important;
+    fill: #ffffff !important;
+}
+
+body.dark .zekr-header-count-text {
+    color: var(--text-primary) !important;
+}
+
+body.dark .zekr-header-count-text .count-number {
+    color: var(--primary-color);
+}
+
+body.dark .zekr-item {
+    background: var(--bg-card);
+}
+
+body.dark .zekr-selection-footer {
+    background: transparent;
+    border-top: 2px solid var(--border-color-strong);
+}
+
+body.dark .zekr-selection-btn {
+    color: var(--text-primary) !important;
+    border-color: var(--border-color-strong);
+    background: transparent;
+}
+
+body.dark .zekr-selection-btn.select-all {
+    border-color: var(--primary-color);
+    color: var(--text-primary) !important;
+}
+
+body.dark .zekr-selection-btn.select-all.active {
+    background: var(--primary-color);
+    color: #ffffff !important;
+}
+
+body.dark .zekr-selection-btn.select-all.active svg {
+    stroke: #ffffff;
+}
+
+body.dark .zekr-selection-btn.share {
+    border-color: var(--primary-color);
+    color: var(--text-primary) !important;
+}
+
+body.dark .zekr-selection-btn.share.active {
+    opacity: 1;
+    color: var(--text-primary) !important;
+}
+
+body.dark .zekr-selection-btn.delete {
+    border-color: #ef4444;
+    color: var(--text-primary) !important;
+}
+
+body.dark .zekr-selection-btn.delete.active {
+    opacity: 1;
+    color: var(--text-primary) !important;
+}
+
+body.dark .zekr-selection-btn svg {
+    stroke: var(--text-primary) !important;
+}
+
+body.dark .zekr-selection-btn.select-all.active svg {
+    stroke: #ffffff !important;
+}
+
+body.dark .zekr-selection-btn.share svg {
+    stroke: var(--primary-color) !important;
+}
+
+body.dark .zekr-selection-btn.delete svg {
+    stroke: #ef4444 !important;
+}
+
+body.dark .zekr-selection-btn.share.active svg {
+    stroke: var(--primary-color) !important;
+}
+
+body.dark .zekr-selection-btn.delete.active svg {
+    stroke: #ef4444 !important;
+}

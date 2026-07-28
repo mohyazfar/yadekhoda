@@ -1,0 +1,204 @@
+/* ============================================
+responsive.css - تنظیمات واکنش‌گرا (نسخه کامل)
+============================================ */
+
+* { box-sizing: border-box; }
+
+@media (max-width: 380px) {
+    .homeGrid { gap: 8px; padding: 0 4px; }
+    .homeBtn { padding: 8px 6px !important; min-height: 70px !important; border-radius: 12px !important; }
+    .homeBtn-icon svg { width: 28px !important; height: 28px !important; }
+    .homeBtn-label { font-size: 12px !important; }
+    .last-zekr-text { font-size: 14px !important; }
+    
+    .bottomBar { 
+        min-height: 28px !important; 
+        max-height: 36px !important; 
+        font-size: 9px !important; 
+        padding: 2px 6px !important; 
+    }
+    #weekday { font-size: 9px !important; }
+    #dateShamsi { font-size: 9px !important; }
+    #time { font-size: 9px !important; }
+    #dateContainer { min-width: 40px !important; }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    .homeGrid { grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 95vw; }
+    .homeBtn { min-height: 50px !important; flex-direction: row; padding: 6px 10px !important; gap: 6px !important; border-radius: 10px !important; }
+    .homeBtn-icon svg { width: 24px !important; height: 24px !important; }
+    .homeBtn-label { font-size: 11px !important; }
+    .last-zekr-box { padding: 6px 12px !important; margin: 4px 8px !important; }
+    .last-zekr-text { font-size: 12px !important; }
+    
+    .bottomBar { 
+        min-height: 22px !important; 
+        max-height: 30px !important; 
+        font-size: 8px !important; 
+        padding: 2px 6px !important; 
+    }
+    #weekday { font-size: 8px !important; }
+    #dateShamsi { font-size: 8px !important; }
+    #time { font-size: 8px !important; }
+    #dateContainer { min-width: 30px !important; }
+}
+
+@media (min-width: 381px) and (max-width: 480px) {
+    .bottomBar { 
+        min-height: 32px !important; 
+        max-height: 42px !important; 
+        font-size: clamp(9px, 2.2vw, 11px) !important; 
+        padding: 3px 8px !important; 
+    }
+    #weekday { font-size: clamp(9px, 2.2vw, 11px) !important; }
+    #dateShamsi { font-size: clamp(9px, 2.2vw, 11px) !important; }
+    #time { font-size: clamp(9px, 2.2vw, 11px) !important; }
+}
+
+@media (min-width: 481px) and (max-width: 600px) {
+    .bottomBar { 
+        min-height: 36px !important; 
+        max-height: 46px !important; 
+        font-size: clamp(10px, 2.5vw, 13px) !important; 
+        padding: 4px 10px !important; 
+    }
+    #weekday { font-size: clamp(10px, 2.5vw, 13px) !important; }
+    #dateShamsi { font-size: clamp(10px, 2.5vw, 13px) !important; }
+    #time { font-size: clamp(10px, 2.5vw, 13px) !important; }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .bottomBar { 
+        min-height: 40px !important; 
+        max-height: 56px !important; 
+        font-size: clamp(12px, 2vw, 16px) !important; 
+        padding: 6px 16px !important; 
+    }
+    #weekday { font-size: clamp(12px, 2vw, 16px) !important; }
+    #dateShamsi { font-size: clamp(12px, 2vw, 16px) !important; }
+    #time { font-size: clamp(12px, 2vw, 16px) !important; }
+    
+    .homeGrid { max-width: 600px; gap: clamp(16px, 3vw, 28px); }
+    .homeBtn { min-height: clamp(100px, 18vh, 160px); padding: clamp(14px, 2.5vh, 24px); }
+    .homeBtn-label { font-size: clamp(18px, 3vw, 26px); }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .bottomBar { 
+        min-height: 46px !important; 
+        max-height: 62px !important; 
+        font-size: clamp(14px, 1.6vw, 18px) !important; 
+        padding: 8px 24px !important; 
+    }
+    #weekday { font-size: clamp(14px, 1.6vw, 18px) !important; }
+    #dateShamsi { font-size: clamp(14px, 1.6vw, 18px) !important; }
+    #time { font-size: clamp(14px, 1.6vw, 18px) !important; }
+    
+    .homeGrid { max-width: 700px; gap: clamp(20px, 3vw, 36px); }
+    .homeBtn { min-height: clamp(120px, 20vh, 200px); padding: clamp(16px, 3vh, 28px); }
+    .homeBtn-label { font-size: clamp(20px, 2.8vw, 30px); }
+    .homeBtn-icon svg { width: clamp(60px, 8vw, 100px) !important; height: clamp(60px, 8vw, 100px) !important; }
+}
+
+@media (min-width: 1441px) {
+    .bottomBar { 
+        min-height: 52px !important; 
+        max-height: 70px !important; 
+        font-size: clamp(16px, 1.4vw, 22px) !important; 
+        padding: 10px 32px !important; 
+    }
+    #weekday { font-size: clamp(16px, 1.4vw, 22px) !important; }
+    #dateShamsi { font-size: clamp(16px, 1.4vw, 22px) !important; }
+    #time { font-size: clamp(16px, 1.4vw, 22px) !important; }
+    
+    .homeGrid { max-width: 800px; gap: clamp(24px, 3vw, 44px); }
+    .homeBtn { min-height: clamp(140px, 22vh, 240px); padding: clamp(18px, 3.5vh, 32px); }
+    .homeBtn-label { font-size: clamp(22px, 2.6vw, 34px); }
+    .homeBtn-icon svg { width: clamp(70px, 7vw, 120px) !important; height: clamp(70px, 7vw, 120px) !important; }
+}
+
+@media (min-width: 768px) {
+    .counterCircle { 
+        width: clamp(280px, 40vw, 420px) !important; 
+        height: clamp(280px, 40vw, 420px) !important; 
+    }
+    .counterCircle svg { 
+        width: clamp(100px, 16vw, 180px) !important; 
+        height: clamp(100px, 16vw, 180px) !important; 
+    }
+    .zekrCard { 
+        max-height: clamp(300px, 40vh, 480px) !important; 
+        padding: clamp(24px, 4vh, 44px) clamp(20px, 4vw, 36px) !important; 
+    }
+    #zekrText { font-size: clamp(34px, 5vw, 48px) !important; }
+    .counter-mini-number { font-size: clamp(44px, 6vw, 56px) !important; }
+}
+
+@media (min-width: 768px) {
+    .zekr-item { 
+        padding: clamp(14px, 2.5vh, 24px) clamp(18px, 3vw, 30px) !important; 
+    }
+    .zekr-item-text { font-size: clamp(24px, 3.5vw, 36px) !important; }
+    .zekr-item-meaning { font-size: clamp(16px, 2vw, 20px) !important; }
+    .zekr-header-btn { 
+        width: clamp(44px, 6vw, 56px) !important; 
+        height: clamp(44px, 6vw, 56px) !important; 
+    }
+    .zekr-header-btn svg { 
+        width: clamp(28px, 3.5vw, 36px) !important; 
+        height: clamp(28px, 3.5vw, 36px) !important; 
+    }
+    .zekr-header-count-text { font-size: clamp(16px, 2vw, 20px) !important; }
+}
+
+@media (min-width: 768px) {
+    .settings-section-box { 
+        padding: clamp(16px, 3vh, 28px) clamp(18px, 3vw, 30px) !important; 
+    }
+    .settings-section-title { font-size: clamp(18px, 2.5vw, 24px) !important; }
+    .theme-mode-btn { 
+        font-size: clamp(16px, 2vw, 20px) !important; 
+        padding: clamp(10px, 2vh, 18px) !important; 
+    }
+    .color-theme-circle { 
+        width: clamp(40px, 5vw, 52px) !important; 
+        height: clamp(40px, 5vw, 52px) !important; 
+    }
+}
+
+@media (min-width: 768px) {
+    .about-content-box { 
+        max-width: 620px !important; 
+        padding: clamp(24px, 4vh, 40px) clamp(20px, 4vw, 36px) !important; 
+    }
+    .about-content { font-size: clamp(16px, 2vw, 22px) !important; }
+    .about-content h4 { font-size: clamp(18px, 2.5vw, 24px) !important; }
+    .signature-img { 
+        width: clamp(220px, 30vw, 340px) !important; 
+        max-height: 140px !important; 
+    }
+}
+
+@media print {
+    .app-header, .bottomBar, .floating-back-btn, .toast, .custom-dialog {
+        display: none !important;
+    }
+    .page {
+        display: block !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+    body, .app {
+        overflow: visible !important;
+        height: auto !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

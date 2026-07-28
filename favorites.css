@@ -1,0 +1,71 @@
+/* ============================================
+favorites.css - فقط اختصاصی‌های صفحه منتخب
+============================================ */
+
+.favoritesMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(10px, 2vh, 22px) clamp(10px, 2.5vw, 20px);
+    overflow-y: auto;
+    gap: clamp(8px, 1.2vh, 14px);
+}
+#favoritesContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.2vh, 14px);
+    overflow-y: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+#favoritesContainer::-webkit-scrollbar {
+    display: none;
+}
+
+/* ===== استایل‌های اختصاصی صفحه منتخب ===== */
+
+/* استایل‌های .zekr-item حذف شدند - از components.css استفاده می‌شه */
+
+.favorites-empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(14px, 3vh, 24px);
+    text-align: center;
+    padding: clamp(18px, 4vh, 36px);
+}
+.favorites-empty-icon {
+    font-size: clamp(44px, 10vw, 68px);
+    opacity: .3;
+}
+.favorites-empty-text {
+    font-size: clamp(16px, 3vw, 22px);
+    color: var(--text-secondary);
+    line-height: 1.8;
+    max-width: 320px;
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+}
+.favorites-empty-text .highlight {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* دکمه رفتن به صفحه اذکار - حذف شد (از components.css استفاده می‌شه) */
+
+/* ===== استایل‌های اختصاصی حالت روشن/تاریک ===== */
+body.light #favoritesContainer .zekr-item:nth-child(odd) {
+    background: rgba(var(--primary-rgb), 0.06);
+}
+body.light #favoritesContainer .zekr-item:nth-child(even) {
+    background: var(--bg-card);
+}
+body.dark #favoritesContainer .zekr-item:nth-child(odd) {
+    background: rgba(var(--primary-rgb), 0.06);
+}
+body.dark #favoritesContainer .zekr-item:nth-child(even) {
+    background: var(--bg-card);
+}

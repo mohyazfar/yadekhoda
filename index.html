@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>یاد خدا</title>
+<meta name="theme-color" content="#0f172a" id="themeColorMeta">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/icon-192x192.png">
+<link rel="stylesheet" href="css/core.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/counter.css">
+<link rel="stylesheet" href="css/zekr.css">
+<link rel="stylesheet" href="css/add-zekr.css">
+<link rel="stylesheet" href="css/settings.css">
+<link rel="stylesheet" href="css/about.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/z-index.css">
+<link rel="stylesheet" href="css/stats.css">
+<link rel="stylesheet" href="css/routines.css">
+<link rel="stylesheet" href="css/reminders.css">
+</head>
+<body>
+
+<noscript>
+    <div style="text-align:center;padding:50px 20px;font-family:Tahoma,sans-serif;direction:rtl;">
+        <h2>⚠️ جاوااسکریپت غیرفعال است</h2>
+        <p style="font-size:18px;color:#64748b;">برای استفاده از این برنامه، لطفاً جاوااسکریپت را فعال کنید.</p>
+    </div>
+</noscript>
+
+<div class="app" id="mainApp">
+
+<button id="floatingBackBtn" class="floating-back-btn" style="display:none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M3 12H21" stroke-linecap="round"/>
+        <path d="M10 5L3 12L10 19" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</button>
+
+<header class="app-header" id="mainHeader">
+<div class="header-content">
+<div class="header-zekr-box" id="headerZekrBox">
+<div class="header-zekr-text" id="headerZekrText">
+    <span class="header-icon-right" id="headerIconRight"></span>
+    <span class="header-zekr-content" id="headerZekrContent">يَا ذَا الْجَلَالِ وَالْإِكْرَامِ</span>
+    <span class="header-icon-left" id="headerIconLeft"></span>
+    <span class="header-count" id="headerCount">تعداد: ۱۰۰</span>
+</div>
+</div>
+</div>
+</header>
+
+<div id="pageHome" class="page active">
+    <div class="stats-summary-box" id="statsSummaryBox">
+        <span class="stats-summary-live">● زنده</span>
+        <div class="slider-container">
+            <div class="slider-track" id="sliderTrack"></div>
+        </div>
+        <div class="slider-dots" id="sliderDots"></div>
+    </div>
+    <main class="homeMain">
+        <div class="homeGrid">
+            <button class="homeBtn" data-page="counter"><span class="homeBtn-icon"></span><span class="homeBtn-label">شمارنده</span></button>
+            <button class="homeBtn" data-page="zekrlist"><span class="homeBtn-icon"></span><span class="homeBtn-label">ذکرها</span></button>
+            <button class="homeBtn" data-page="routines"><span class="homeBtn-icon"></span><span class="homeBtn-label">روال‌ها</span></button>
+            <button class="homeBtn" data-page="reminders"><span class="homeBtn-icon"></span><span class="homeBtn-label">یادآورها</span></button>
+            <button class="homeBtn" data-page="settings"><span class="homeBtn-icon"></span><span class="homeBtn-label">تنظیمات</span></button>
+            <button class="homeBtn" data-page="about"><span class="homeBtn-icon"></span><span class="homeBtn-label">درباره</span></button>
+        </div>
+    </main>
+</div>
+
+<div id="pageCounter" class="page">
+    <main class="counterMain">
+        <section class="zekrCard" id="zekrCard">
+            <h2 id="zekrText"></h2>
+            <div class="zekr-divider-line" id="zekrDividerLine"></div>
+            <p id="meaning"></p>
+        </section>
+
+        <div class="zekr-card-footer">
+            <span class="zekr-count-badge" id="targetBadge">تعداد: <span id="targetValueBadge">۱۰۰</span></span>
+            <span class="zekr-translate-toggle" id="zekrTranslateToggle">ت</span>
+            <span class="zekr-select-badge" id="zekrSelectBadge">انتخاب ذکر</span>
+        </div>
+
+        <div class="counter-mini-box" id="counterMiniBox">
+            <div class="counter-progress-track" id="counterProgressTrack">
+                <div class="counter-progress-fill" id="counterProgressBar"></div>
+            </div>
+            <div class="counter-mini-content">
+                <span class="counter-mini-number" id="counterMiniNumber">۰</span>
+            </div>
+            <div id="goalReachedMsg" class="goal-float-btn" style="display:none;">انتخاب ذکر</div>
+        </div>
+        
+        <div class="counterCircleWrapper">
+            <div id="resetToast" class="reset-toast">یک ثانیه نگه دار</div>
+            <button id="countBtn" class="counterCircle">
+                <span class="fingerprint-icon"></span>
+            </button>
+        </div>
+        
+        <div class="counter-bottom">
+            <button id="themeToggleBtn" class="theme-toggle-btn"></button>
+            <button id="resetBtn" class="reset-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 4 23 10 17 10"/>
+                    <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+                </svg>
+            </button>
+            <button id="vibrateBtn" class="vibrate-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M5 8C5 5.17157 5 3.75736 5.87868 2.87868C6.75736 2 8.17157 2 11 2H13C15.8284 2 17.2426 2 18.1213 2.87868C19 3.75736 19 5.17157 19 8V16C19 18.8284 19 20.2426 18.1213 21.1213C17.2426 22 15.8284 22 13 22H11C8.17157 22 6.75736 22 5.87868 21.1213C5 20.2426 5 18.8284 5 16V8Z"/>
+                    <path d="M14.5 19H9.5" stroke-linecap="round"/>
+                    <path d="M22.0001 6L21.2237 7.55279C21.083 7.83431 21.083 8.16569 21.2237 8.44721L21.7765 9.55279C21.9173 9.83431 21.9173 10.1657 21.7765 10.4472L21.2237 11.5528C21.083 11.8343 21.083 12.1657 21.2237 12.4472L21.7765 13.5528C21.9173 13.8343 21.9173 14.1657 21.7765 14.4472L21.2237 15.5528C21.083 15.8343 21.083 16.1657 21.2237 16.4472L22.0001 18" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 6L2.77639 7.55279C2.91716 7.83431 2.91716 8.16569 2.77639 8.44721L2.22361 9.55279C2.08284 9.83431 2.08284 10.1657 2.22361 10.4472L2.77639 11.5528C2.91716 11.8343 2.91716 12.1657 2.77639 12.4472L2.22361 13.5528C2.08284 13.8343 2.08284 14.1657 2.77639 14.4472L2.77639 15.5528C2.91716 15.8343 2.91716 16.1657 2.77639 16.4472L2 18" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </main>
+</div>
+
+<div id="pageZekr" class="page">
+    <div class="zekr-header-bar">
+        <div class="zekr-header-right">
+            <span class="zekr-header-count-text" id="zekrHeaderCountText">تعداد کل ذکرها: <span class="count-number" id="zekrHeaderCountNumber">۰</span></span>
+        </div>
+        <div class="zekr-header-left">
+            <button id="zekrAddBtn" class="zekr-header-btn add-btn" title="افزودن ذکر جدید">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                    <line x1="12" y1="4" x2="12" y2="20"/>
+                    <line x1="4" y1="12" x2="20" y2="12"/>
+                </svg>
+            </button>
+            <button id="zekrFavoriteFilterBtn" class="zekr-header-btn" title="نمایش ذکرهای منتخب">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 21.35C12 21.35 2 14.5 2 8.5C2 5.5 4.5 3 7.5 3C9.5 3 11 4 12 5.5C13 4 14.5 3 16.5 3C19.5 3 22 5.5 22 8.5C22 14.5 12 21.35 12 21.35Z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <button id="zekrSelectModeBtn" class="zekr-header-btn" title="حالت انتخاب گروهی">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <main class="zekrMain">
+        <div id="zekrListContainer"></div>
+    </main>
+    <div class="zekr-selection-footer" id="zekrSelectionFooter" style="display:none;">
+        <button id="zekrSelectionDelete" class="zekr-selection-btn delete">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:22px;height:22px;">
+                <line x1="4" y1="4" x2="20" y2="20" stroke-linecap="round"/>
+                <line x1="20" y1="4" x2="4" y2="20" stroke-linecap="round"/>
+            </svg>
+            پاک کردن
+        </button>
+        <button id="zekrSelectionShare" class="zekr-selection-btn share">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:22px;height:22px;">
+                <circle cx="18" cy="5" r="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="6" cy="12" r="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="18" cy="19" r="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke-linecap="round"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke-linecap="round"/>
+            </svg>
+            همرسانی
+        </button>
+        <button id="zekrSelectionSelectAll" class="zekr-selection-btn select-all">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:20px;height:20px;">
+                <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            انتخاب همه
+        </button>
+        <span class="zekr-selection-count" id="selectedCount">۰</span>
+    </div>
+</div>
+
+<div id="pageAddZekr" class="page">
+    <main class="addZekrMain" id="addZekrMain">
+        <div class="add-zekr-section" id="addZekrFormSection">
+            <div class="add-zekr-form">
+                <div class="add-zekr-group">
+                    <label for="inputZekrText">متن ذکر <span class="required">*</span></label>
+                    <input type="text" id="inputZekrText" placeholder="متن ذکر را وارد کنید">
+                </div>
+                <div class="add-zekr-group">
+                    <label for="inputZekrMeaning">ترجمه ذکر</label>
+                    <input type="text" id="inputZekrMeaning" placeholder="ترجمه ذکر را وارد کنید">
+                </div>
+                <div class="add-zekr-group">
+                    <label for="inputZekrTarget">تعداد ذکر <span class="required">*</span></label>
+                    <input type="number" id="inputZekrTarget" placeholder="تعداد را وارد کنید" min="1">
+                </div>
+                <button id="previewZekrBtn" class="preview-zekr-btn">پیش‌نمایش ذکر</button>
+            </div>
+        </div>
+
+        <div class="add-zekr-divider" id="addZekrDivider"></div>
+
+        <div class="add-zekr-section" id="addZekrFileSection">
+            <div class="add-zekr-import-title" id="addZekrImportTitle">وارد کردن از طریق فایل</div>
+            <div class="add-zekr-import-box" id="addZekrImportBox">
+                <input type="file" id="csvFileInput" accept=".csv,.txt,text/csv,text/plain,application/csv,application/vnd.ms-excel,text/comma-separated-values,*/*" style="display:none;">
+                <button id="csvImportBtn" class="csv-import-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    انتخاب فایل
+                </button>
+                <span id="csvFileName" class="csv-file-name">هیچ فایلی انتخاب نشده</span>
+                <button id="floatingImportBtn" class="floating-import-btn" style="display:none;">وارد کردن ذکرها</button>
+            </div>
+            <div id="csvDataTableContainer"></div>
+
+            <div class="add-zekr-csv-info" id="addZekrCsvInfo">
+                <div class="csv-info-title">ساختار فایل نمونه</div>
+                <div class="csv-excel-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>A</th>
+                                <th>B</th>
+                                <th>C</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="row-number">۱</td>
+                                <td class="col-a">متن ذکر <span class="required">*</span></td>
+                                <td class="col-b">ترجمه</td>
+                                <td class="col-c">تعداد <span class="required">*</span></td>
+                            </tr>
+                            <tr>
+                                <td class="row-number">۲</td>
+                                <td class="col-a">اللّهُ أَكْبَرُ <span class="required">*</span></td>
+                                <td class="col-b">خداوند بزرگتر است</td>
+                                <td class="col-c">۳۴ <span class="required">*</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="csv-formats-text">
+                    📁 فرمت‌های قابل قبول: 
+                    <span class="highlight">csv</span> , 
+                    <span class="highlight">txt</span> و 
+                    <span class="highlight">xlsx</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div id="pagePreview" class="page">
+    <main class="previewMain">
+        <div class="preview-card">
+            <div class="preview-card-item preview-text-item">
+                <span class="preview-card-label">متن ذکر</span>
+                <span class="preview-card-value" id="previewCardText">-</span>
+            </div>
+            <div class="preview-card-item preview-meaning-item">
+                <span class="preview-card-label">ترجمه</span>
+                <span class="preview-card-value" id="previewCardMeaning">-</span>
+            </div>
+            <div class="preview-card-item preview-target-item">
+                <span class="preview-card-label">تعداد</span>
+                <span class="preview-card-value" id="previewCardTarget">-</span>
+            </div>
+        </div>
+        <div class="preview-actions">
+            <button id="editFromPreviewBtn" class="preview-edit-btn">اصلاح</button>
+            <button id="confirmFromPreviewBtn" class="preview-confirm-btn">ثبت ذکر</button>
+        </div>
+    </main>
+</div>
+
+<div id="pageEditZekr" class="page">
+    <main class="addZekrMain">
+        <div class="add-zekr-form">
+            <div class="add-zekr-group">
+                <label for="editZekrText">متن ذکر <span class="required">*</span></label>
+                <input type="text" id="editZekrText" placeholder="متن ذکر را وارد کنید">
+            </div>
+            <div class="add-zekr-group">
+                <label for="editZekrMeaning">ترجمه ذکر</label>
+                <input type="text" id="editZekrMeaning" placeholder="ترجمه ذکر را وارد کنید">
+            </div>
+            <div class="add-zekr-group">
+                <label for="editZekrTarget">تعداد ذکر <span class="required">*</span></label>
+                <input type="number" id="editZekrTarget" placeholder="تعداد را وارد کنید" min="1">
+            </div>
+            <button id="updateZekrBtn" class="update-zekr-btn">به‌روزرسانی ذکر</button>
+        </div>
+    </main>
+</div>
+
+<div id="pageSettings" class="page"><main class="settingsMain">
+<div class="settings-section"><div class="settings-section-header"><div class="settings-section-title">ظاهر برنامه</div><span class="settings-toast" id="toast-0"></span></div><div class="settings-section-box"><div class="theme-mode-container"><button class="theme-mode-btn" data-mode="light">روشن</button><button class="theme-mode-btn" data-mode="dark">تاریک</button><button class="theme-mode-btn" data-mode="auto">خودکار</button></div></div></div>
+<div class="settings-section"><div class="settings-section-header"><div class="settings-section-title">پوسته</div><span class="settings-toast" id="toast-1"></span></div><div class="settings-section-box"><div class="color-theme-container" id="colorThemeContainer"></div></div></div>
+<div class="settings-section"><div class="settings-section-header"><div class="settings-section-title">الگوهای ویبره</div><span class="settings-toast" id="toast-2"></span></div><div class="settings-section-box"><div class="vibration-container" id="vibrationContainer"></div></div></div>
+<div class="settings-section"><div class="settings-section-header"><div class="settings-section-title">🗄️ مدیریت داده</div><span class="settings-toast" id="toast-3"></span></div><div class="settings-section-box" style="display:flex; flex-direction:column; gap:clamp(10px,1.8vh,16px);"><button id="resetZekrsBtn" class="settings-danger-btn" style="border-color:#f59e0b; color:#f59e0b;">🗑️ حذف ذکرها<span style="font-size:11px; font-weight:400; opacity:0.7; display:block;">(ذکرها و منتخب‌ها حذف می‌شوند، تنظیمات و آمار باقی می‌مانند)</span></button><button id="resetSettingsBtn" class="settings-danger-btn" style="border-color:#ef4444; color:#ef4444;">⚙️ حذف تنظیمات و آمار<span style="font-size:11px; font-weight:400; opacity:0.7; display:block;">(تنظیمات، آمار و گزارش‌ها حذف می‌شوند، ذکرها باقی می‌مانند)</span></button><button id="resetAllBtn" class="settings-danger-btn" style="border-color:#dc2626; color:#dc2626; background:rgba(220,38,38,0.08);">🔥 حذف همه چیز<span style="font-size:11px; font-weight:400; opacity:0.7; display:block;">(همه داده‌ها پاک می‌شوند)</span></button></div></div>
+</main></div>
+
+<div id="pageStats" class="page">
+    <main class="statsMain">
+        <div class="stats-header">
+            <span class="stats-header-title" id="statsHeaderTitle">گزارش عملکرد</span>
+            <span class="stats-header-date" id="statsHeaderDate"></span>
+        </div>
+        <div class="stats-cards">
+            <div class="stats-card"><div class="stats-card-number" id="statsCardToday">۰</div><div class="stats-card-label">امروز</div></div>
+            <div class="stats-card"><div class="stats-card-number" id="statsCardWeek">۰</div><div class="stats-card-label">این هفته</div></div>
+            <div class="stats-card"><div class="stats-card-number" id="statsCardMonth">۰</div><div class="stats-card-label">این ماه</div></div>
+            <div class="stats-card streak"><div class="stats-card-number" id="statsCardStreak">۰</div><div class="stats-card-label">روز پیاپی</div></div>
+            <div class="stats-card free"><div class="stats-card-number" id="statsCardFree">۰</div><div class="stats-card-label">ذکر آزاد</div></div>
+        </div>
+        <div class="stats-period">
+            <button class="stats-period-btn active" data-period="today">امروز</button>
+            <button class="stats-period-btn" data-period="week">هفته</button>
+            <button class="stats-period-btn" data-period="month">ماه</button>
+            <button class="stats-period-btn" data-period="3months">۳ ماه</button>
+        </div>
+        <div class="stats-chart-section">
+            <div class="stats-chart-title">روند ذکرها</div>
+            <div class="stats-bars" id="statsBarChart"></div>
+        </div>
+        <div class="stats-chart-section">
+            <div class="stats-chart-title">سهم ذکرها</div>
+            <div class="stats-horizontal-bars" id="statsHorizontalBars"></div>
+        </div>
+        <button id="statsDeleteBtn" class="stats-delete-btn">حذف گزارش‌های این بازه</button>
+    </main>
+</div>
+
+<div id="pageAbout" class="page">
+    <main class="aboutMain">
+        <div class="about-content-box">
+            <div class="about-content">
+                <div class="about-ayah-section">
+                    <div class="about-stars">
+                        <span class="star-icon" id="starLeft"></span>
+                        <span class="about-ayah">أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</span>
+                        <span class="star-icon" id="starRight"></span>
+                    </div>
+                    <div class="about-ayah-meaning">
+                        آگاه باشید که با یاد خداوند، دل‌ها آرامش می‌یابد
+                    </div>
+                    <div class="about-ayah-ref">
+                        (سوره رعد، آیه ۲۸)
+                    </div>
+                </div>
+
+                <hr class="about-divider">
+
+                <div class="about-message">
+                    <span class="msg-icon">🌸</span>
+                    این برنامه با نیت ترویج یاد خدا و همراهی شما در مسیر مداومت بر ذکر طراحی شده است. امیدواریم بتواند گامی کوچک برای آرامش دل‌ها، نزدیکی بیشتر به پروردگار و جاری شدن نور یاد خدا در لحظه‌های زندگی باشد.
+                    <br><br>
+                    <span class="msg-icon">✨</span>
+                    به یاد داشته باشیم که محبوب‌ترین عمل نزد خدا، عملی است که پیوسته انجام شود، هرچند اندک باشد.
+                    <br><br>
+                    <span class="msg-icon">💬</span>
+                    اگر پیشنهاد، انتقاد یا ایده‌ای برای بهتر شدن برنامه دارید، خوشحال می‌شویم آن را از طریق بخش دیدگاه‌های مارکت‌ها با ما در میان بگذارید. همراهی و نظرات ارزشمند شما، انگیزه‌ای برای ادامه این مسیر و بهبود هرچه بیشتر این برنامه خواهد بود.
+                    <br><br>
+                    <span class="msg-icon">🤲</span>
+                    اگر این برنامه توانسته حتی لحظه‌ای شما را به یاد خدا نزدیک‌تر کند، ما را از دعای خیرتان بی‌نصیب نگذارید.
+                </div>
+
+                <hr class="about-divider">
+
+                <div class="about-footer-text">
+                    وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ
+                </div>
+
+                <hr class="about-divider">
+
+                <div class="about-dev-title">✏️ طراحی و توسعه</div>
+
+                <div class="signature-container">
+                    <img src="assets/signature.png" alt="امضا" class="signature-img" id="signatureImg">
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- ===== صفحه روال‌ها ===== -->
+<div id="pageRoutines" class="page">
+    <div class="routines-header-bar">
+        <div class="routines-header-right">
+            <span class="routines-header-count-text">تعداد روال‌ها: <span class="count-number" id="routinesCount">۰</span></span>
+        </div>
+        <div class="routines-header-left">
+            <button id="routinesAddBtn" class="routines-header-btn add-btn" title="افزودن روال جدید">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                    <line x1="12" y1="4" x2="12" y2="20"/>
+                    <line x1="4" y1="12" x2="20" y2="12"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <main class="routinesMain">
+        <div id="routinesListContainer"></div>
+    </main>
+</div>
+
+<!-- ===== صفحه ساخت روال ===== -->
+<div id="pageRoutineBuilder" class="page">
+    <div class="routines-header-bar">
+        <div class="routines-header-right">
+            <span class="routines-header-count-text">انتخاب ذکر/ها</span>
+        </div>
+        <div class="routines-header-left">
+        </div>
+    </div>
+    <main class="routinesMain">
+        <div id="routineBuilderList"></div>
+        <div class="routine-builder-footer" id="routineBuilderFooter">
+            <span class="routine-builder-count" id="routineBuilderCount">۰</span>
+            <button id="routineBuilderCancelBtn" class="routine-builder-cancel">انصراف</button>
+            <button id="routineBuilderConfirmBtn" class="routine-builder-confirm">ادامه</button>
+        </div>
+    </main>
+</div>
+
+<!-- ===== صفحه تنظیم روال ===== -->
+<div id="pageRoutineSetup" class="page">
+    <div class="routines-header-bar">
+        <div class="routines-header-right">
+            <span class="routines-header-count-text">تنظیم روال</span>
+        </div>
+        <div class="routines-header-left">
+        </div>
+    </div>
+    <main class="routinesMain">
+        <div class="routine-setup-container">
+            <div class="routine-setup-group">
+                <label for="routineTitleInput">عنوان روال <span class="required">*</span></label>
+                <input type="text" id="routineTitleInput" placeholder="عنوان روال را وارد کنید">
+            </div>
+            <div class="routine-setup-divider"></div>
+            <div class="routine-setup-title">تعداد هر ذکر</div>
+            <div id="routineSetupList"></div>
+        </div>
+        <div class="routine-setup-footer">
+            <button id="routineSetupCancelBtn" class="routine-setup-cancel">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="4" y1="4" x2="20" y2="20"/>
+                    <line x1="20" y1="4" x2="4" y2="20"/>
+                </svg>
+                انصراف
+            </button>
+            <button id="routineSetupConfirmBtn" class="routine-setup-confirm" disabled>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                تایید
+            </button>
+        </div>
+    </main>
+</div>
+
+<!-- ===== صفحه شمارنده روال ===== -->
+<div id="pageRoutineCounter" class="page">
+    <main class="routineCounterMain">
+        <div class="routine-counter-header">
+            <span class="routine-counter-title" id="routineCounterTitle">تسبیحات حضرت فاطمه (س)</span>
+            <span class="routine-counter-progress" id="routineCounterProgress">۱ از ۳</span>
+        </div>
+        <section class="zekrCard" id="routineZekrCard">
+            <div class="zekr-header-row">
+                <span class="zekr-count-badge" id="routineTargetBadge">تعداد: <span id="routineTargetValue">۳۴</span></span>
+            </div>
+            <h2 id="routineZekrText"></h2>
+            <div class="zekr-divider-line"></div>
+            <p id="routineMeaning"></p>
+        </section>
+        <div class="counter-mini-box" id="routineCounterMiniBox">
+            <div class="counter-progress-track">
+                <div class="counter-progress-fill" id="routineCounterProgressBar"></div>
+            </div>
+            <div class="counter-mini-content">
+                <span class="counter-mini-number" id="routineCounterMiniNumber">۰</span>
+            </div>
+        </div>
+        <div class="counterCircleWrapper">
+            <button id="routineCountBtn" class="counterCircle">
+                <span class="fingerprint-icon"></span>
+            </button>
+        </div>
+        <div class="counter-bottom">
+            <button id="routineResetBtn" class="reset-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 4 23 10 17 10"/>
+                    <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+                </svg>
+            </button>
+            <div class="right-buttons">
+                <button id="routineVibrateBtn" class="vibrate-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M5 8C5 5.17157 5 3.75736 5.87868 2.87868C6.75736 2 8.17157 2 11 2H13C15.8284 2 17.2426 2 18.1213 2.87868C19 3.75736 19 5.17157 19 8V16C19 18.8284 19 20.2426 18.1213 21.1213C17.2426 22 15.8284 22 13 22H11C8.17157 22 6.75736 22 5.87868 21.1213C5 20.2426 5 18.8284 5 16V8Z"/>
+                        <path d="M14.5 19H9.5" stroke-linecap="round"/>
+                        <path d="M22.0001 6L21.2237 7.55279C21.083 7.83431 21.083 8.16569 21.2237 8.44721L21.7765 9.55279C21.9173 9.83431 21.9173 10.1657 21.7765 10.4472L21.2237 11.5528C21.083 11.8343 21.083 12.1657 21.2237 12.4472L21.7765 13.5528C21.9173 13.8343 21.9173 14.1657 21.7765 14.4472L21.2237 15.5528C21.083 15.8343 21.083 16.1657 21.2237 16.4472L22.0001 18" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 6L2.77639 7.55279C2.91716 7.83431 2.91716 8.16569 2.77639 8.44721L2.22361 9.55279C2.08284 9.83431 2.08284 10.1657 2.22361 10.4472L2.77639 11.5528C2.91716 11.8343 2.91716 12.1657 2.77639 12.4472L2.22361 13.5528C2.08284 13.8343 2.08284 14.1657 2.77639 14.4472L2.77639 15.5528C2.91716 15.8343 2.91716 16.1657 2.77639 16.4472L2 18" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button id="routineThemeToggleBtn" class="theme-toggle-btn"></button>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- ===== صفحه یادآورها ===== -->
+<div id="pageReminders" class="page">
+    <div class="reminders-header-bar">
+        <div class="reminders-header-right">
+            <span class="reminders-header-count-text">تعداد یادآورها: <span class="count-number" id="remindersCount">۰</span></span>
+        </div>
+        <div class="reminders-header-left">
+            <button id="remindersAddBtn" class="reminders-header-btn add-btn" title="افزودن یادآور جدید">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                    <line x1="12" y1="4" x2="12" y2="20"/>
+                    <line x1="4" y1="12" x2="20" y2="12"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <main class="remindersMain">
+        <div id="remindersListContainer"></div>
+    </main>
+</div>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<div id="customDialog" class="custom-dialog" style="display:none;">
+<div class="dialog-overlay"></div>
+<div class="dialog-box">
+<div class="dialog-icon" id="dialogIcon"></div>
+<div class="dialog-title" id="dialogTitle">تأیید</div>
+<div class="dialog-message" id="dialogMessage">آیا مطمئن هستید؟</div>
+<div class="dialog-input-container" id="dialogInputContainer" style="display:none;">
+<input type="number" id="dialogInput" class="dialog-input" placeholder="مقدار را وارد کنید" min="1">
+</div>
+<div class="dialog-buttons">
+<button class="dialog-btn dialog-cancel" id="dialogCancel">انصراف</button>
+<button class="dialog-btn dialog-confirm" id="dialogConfirm">تأیید</button>
+</div>
+</div>
+</div>
+
+<script type="module" src="js/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.body.classList.add('loaded');
+    setTimeout(function() {
+        document.body.classList.add('fully-loaded');
+    }, 300);
+});
+document.addEventListener('click',function(e){const t=e.target.closest('button,a,[role="button"],.homeBtn,.bottomCircle,.counterCircle,.zekr-item-star,.zekr-item-btn,.add-zekr-btn,.preview-zekr-btn,.preview-confirm-btn,.preview-edit-btn,.go-to-zekr-btn,.theme-mode-btn,.color-theme-circle,.vibration-pattern-btn,.floating-import-btn');if(t)e.preventDefault()},{passive:!1});
+document.addEventListener('click',function(e){if(e.target.tagName==='A'&&e.target.getAttribute('href')==='#')e.preventDefault()});
+</script>
+</body>
+</html>

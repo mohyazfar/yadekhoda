@@ -1,0 +1,331 @@
+/* ============================================
+settings.css - صفحه تنظیمات با حالت شیشه‌ای
+============================================ */
+
+.settingsMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(10px, 2vh, 22px) clamp(10px, 2.5vw, 20px);
+    overflow-y: auto;
+    gap: clamp(12px, 2.5vh, 22px);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+}
+.settingsMain::-webkit-scrollbar {
+    display: none;
+}
+.settings-section {
+    flex-shrink: 0;
+}
+.settings-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: clamp(6px, 1vh, 12px);
+    flex-wrap: wrap;
+}
+.settings-section-title {
+    font-size: clamp(16px, 2.8vw, 22px);
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: right;
+    flex-shrink: 0;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+.settings-toast {
+    font-size: clamp(12px, 1.8vw, 16px);
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 3px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(var(--primary-rgb), 0.15);
+    opacity: 0;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-weight: 600;
+    box-shadow: 0 0 20px var(--primary-color-glow);
+    text-align: center;
+    min-width: 40px;
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 130px;
+}
+.settings-toast.show {
+    opacity: 1;
+}
+.settings-section-box {
+    padding: clamp(12px, 2.2vh, 22px) clamp(10px, 2vw, 18px);
+    border-radius: clamp(12px, 2.5vh, 20px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 0 30px var(--primary-color-glow);
+    border: 2px solid rgba(var(--primary-rgb), 0.12);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ===== درخشش بالای باکس ===== */
+.settings-section-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        ellipse at 30% 20%,
+        rgba(255, 255, 255, 0.06) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+}
+
+.settings-danger-btn {
+    padding: clamp(14px, 2.2vh, 20px) clamp(16px, 3vw, 24px);
+    border-radius: clamp(12px, 2vh, 16px);
+    font-size: clamp(15px, 2.5vw, 19px);
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    transition: all .2s ease;
+    border: 2px solid rgba(var(--primary-rgb), 0.15);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--text-primary);
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    line-height: 1.6;
+}
+.settings-danger-btn:active {
+    transform: scale(.96);
+}
+.settings-danger-btn:hover {
+    opacity: 0.8;
+}
+.theme-mode-container {
+    display: flex;
+    gap: clamp(6px, 1.2vw, 14px);
+}
+.theme-mode-btn {
+    flex: 1;
+    padding: clamp(8px, 1.5vh, 14px) clamp(6px, 1vw, 12px);
+    border-radius: clamp(10px, 2vh, 16px);
+    border: 2px solid rgba(var(--primary-rgb), 0.15);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--text-secondary);
+    font-size: clamp(14px, 2.2vw, 18px);
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    text-align: center;
+    min-height: clamp(36px, 5vh, 48px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 0 20px var(--primary-color-glow);
+    transition: all 0.3s ease;
+}
+.theme-mode-btn.active {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: #ffffff;
+    box-shadow: 0 0 40px var(--primary-color-alpha), 0 0 60px var(--primary-color-glow-strong);
+}
+.theme-mode-btn:active {
+    transform: scale(.96);
+}
+.color-theme-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(clamp(34px, 6vw, 44px), 1fr));
+    gap: clamp(6px, 1vw, 12px);
+    justify-items: center;
+}
+.color-theme-circle {
+    width: clamp(34px, 6vw, 44px);
+    height: clamp(34px, 6vw, 44px);
+    border-radius: 50%;
+    border: 2px solid rgba(var(--primary-rgb), 0.15);
+    cursor: pointer;
+    transition: all .2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    position: relative;
+}
+.color-theme-circle:active {
+    transform: scale(.9);
+}
+.color-theme-circle.active {
+    border-color: var(--text-primary);
+    box-shadow: 0 0 40px var(--primary-color-alpha), 0 0 80px var(--primary-color-glow-strong);
+    transform: scale(1.1);
+}
+.color-theme-circle.active::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-size: clamp(14px, 2.5vw, 20px);
+    font-weight: 700;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, .5);
+}
+
+/* ===== الگوهای ویبره ===== */
+.vibration-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(8px, 1.5vw, 14px);
+    padding: clamp(6px, 1vh, 12px) 0;
+}
+
+.vibration-pattern-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: clamp(10px, 1.8vh, 16px) clamp(6px, 1vw, 10px);
+    border-radius: clamp(10px, 2vh, 14px);
+    border: 2px solid rgba(var(--primary-rgb), 0.15);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    min-height: clamp(60px, 10vh, 80px);
+}
+
+.vibration-pattern-btn:active {
+    transform: scale(0.95);
+}
+
+.vibration-pattern-btn.active {
+    border-color: var(--primary-color);
+    background: rgba(var(--primary-rgb), 0.1);
+    box-shadow: 0 0 30px var(--primary-color-alpha), 0 0 50px var(--primary-color-glow-strong);
+}
+
+.vibration-pattern-btn .vibration-pattern-icon {
+    font-size: clamp(22px, 4vw, 32px);
+    line-height: 1;
+}
+
+.vibration-pattern-btn .vibration-pattern-name {
+    font-size: clamp(10px, 1.4vw, 13px);
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-align: center;
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+}
+
+.vibration-pattern-btn.active .vibration-pattern-name {
+    color: var(--primary-color);
+}
+
+/* ============================================
+===== حالت روشن/تاریک =====
+============================================ */
+
+body.light .settings-section-box {
+    background: rgba(255, 255, 255, 0.4);
+    border: 2px solid rgba(var(--primary-rgb), 0.12);
+}
+body.light .settings-toast {
+    background: rgba(255, 255, 255, 0.4);
+}
+body.light .theme-mode-btn {
+    background: rgba(255, 255, 255, 0.3);
+}
+body.light .theme-mode-btn.active {
+    background: var(--primary-color);
+    color: #ffffff;
+}
+body.light .vibration-pattern-btn {
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(var(--primary-rgb), 0.12);
+}
+body.light .vibration-pattern-btn.active {
+    background: rgba(var(--primary-rgb), 0.1);
+    border-color: var(--primary-color);
+}
+body.light .settings-danger-btn {
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(var(--primary-rgb), 0.12);
+}
+body.light .color-theme-circle {
+    border: 2px solid rgba(var(--primary-rgb), 0.12);
+}
+
+body.dark .settings-section-box {
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(var(--primary-rgb), 0.08);
+}
+body.dark .settings-toast {
+    background: rgba(255, 255, 255, 0.04);
+}
+body.dark .theme-mode-btn {
+    background: rgba(255, 255, 255, 0.04);
+}
+body.dark .theme-mode-btn.active {
+    background: var(--primary-color);
+    color: #ffffff;
+}
+body.dark .vibration-pattern-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(var(--primary-rgb), 0.08);
+}
+body.dark .vibration-pattern-btn.active {
+    background: rgba(var(--primary-rgb), 0.08);
+    border-color: var(--primary-color);
+}
+body.dark .settings-danger-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(var(--primary-rgb), 0.08);
+}
+body.dark .color-theme-circle {
+    border: 2px solid rgba(var(--primary-rgb), 0.08);
+}
+
+/* ===== تنظیمات واکنش‌گرا ===== */
+@media (max-width: 400px) {
+    .vibration-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+    .vibration-pattern-btn {
+        min-height: 50px;
+        padding: 8px 4px;
+    }
+    .vibration-pattern-btn .vibration-pattern-icon {
+        font-size: 18px;
+    }
+    .vibration-pattern-btn .vibration-pattern-name {
+        font-size: 9px;
+    }
+}
+
+@media (min-width: 600px) {
+    .vibration-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+    .vibration-pattern-btn {
+        min-height: 80px;
+        padding: 14px 10px;
+    }
+    .vibration-pattern-btn .vibration-pattern-icon {
+        font-size: 32px;
+    }
+    .vibration-pattern-btn .vibration-pattern-name {
+        font-size: 14px;
+    }
+}

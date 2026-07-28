@@ -1,0 +1,868 @@
+/* ============================================
+counter.css - کامل (نسخه نهایی با چیدمان جدید)
+============================================ */
+
+.counterMain{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding:clamp(8px,1.8vh,20px) clamp(10px,2.5vw,24px);
+    gap:clamp(6px,1vh,12px);
+    overflow-y:auto;
+    min-height:0;
+}
+
+.zekrCard{
+    background:var(--bg-card);
+    border-radius:clamp(16px,3vh,28px);
+    padding:clamp(20px,4vh,40px) clamp(16px,3.5vw,30px);
+    text-align:center;
+    box-shadow:0 8px 24px var(--shadow-color),0 0 60px var(--primary-color-glow);
+    min-height:clamp(180px,30vh,350px);
+    max-height:clamp(280px,45vh,500px);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    border:2px solid var(--border-color-strong);
+    gap:clamp(8px,1.2vh,16px);
+    overflow-y:auto;
+    flex-shrink:0;
+    scrollbar-width:thin;
+    width:100%;
+    position:relative;
+}
+.zekrCard::-webkit-scrollbar{width:4px;}
+.zekrCard::-webkit-scrollbar-thumb{background:var(--border-color-strong);border-radius:10px;}
+.zekrCard::-webkit-scrollbar-track{background:transparent;}
+
+/* ============================================
+===== سه دکمه زیر کادر ذکر (بالای شمارنده) =====
+============================================ */
+
+.zekr-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: clamp(8px, 1.5vw, 16px);
+    padding: clamp(4px, 0.6vh, 8px) 0;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    direction: rtl;
+}
+
+.zekr-count-badge {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    font-size: clamp(12px, 1.8vw, 16px);
+    font-weight: 600;
+    color: #ffffff;
+    background: var(--primary-color);
+    padding: clamp(4px, 0.6vh, 8px) clamp(12px, 2vw, 18px);
+    border-radius: clamp(8px, 1.5vh, 12px);
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    box-shadow: 0 2px 12px var(--shadow-color), 0 0 30px var(--primary-color-glow);
+    display: inline-block;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    order: 0; /* راست */
+}
+.zekr-count-badge:active {
+    transform: scale(0.95);
+}
+
+.zekr-translate-toggle {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    font-size: clamp(14px, 2vw, 18px);
+    font-weight: 700;
+    color: #ffffff;
+    background: var(--primary-color);
+    padding: clamp(4px, 0.6vh, 8px) clamp(12px, 2vw, 18px);
+    border-radius: clamp(8px, 1.5vh, 12px);
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    box-shadow: 0 2px 12px var(--shadow-color), 0 0 30px var(--primary-color-glow);
+    display: inline-block;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    min-width: 32px;
+    text-align: center;
+    line-height: 1;
+    order: 1; /* وسط */
+}
+.zekr-translate-toggle:active {
+    transform: scale(0.92);
+}
+.zekr-translate-toggle.active {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border-color-strong);
+    opacity: 0.5;
+}
+
+.zekr-select-badge {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    font-size: clamp(12px, 1.8vw, 16px);
+    font-weight: 600;
+    color: #ffffff;
+    background: var(--primary-color);
+    padding: clamp(4px, 0.6vh, 8px) clamp(12px, 2vw, 18px);
+    border-radius: clamp(8px, 1.5vh, 12px);
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    box-shadow: 0 2px 12px var(--shadow-color), 0 0 30px var(--primary-color-glow);
+    display: inline-block;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    order: 2; /* چپ */
+}
+.zekr-select-badge:active {
+    transform: scale(0.95);
+}
+
+.zekrCard.hide-translate #meaning {
+    display: none !important;
+}
+.zekrCard.hide-translate .zekr-divider-line {
+    display: none !important;
+}
+.zekrCard.hide-translate #zekrText {
+    font-size: clamp(32px,6vw,52px) !important;
+    min-height: auto !important;
+    display: block !important;
+}
+.zekrCard.hide-translate #zekrText.small-font {
+    font-size: clamp(20px,3.5vw,30px) !important;
+}
+
+#zekrText{
+    font-size:clamp(32px,6vw,52px);
+    line-height:1.8;
+    font-weight:bold;
+    font-family:'Quran','Love',Tahoma,'Vazirmatn',sans-serif;
+    color:var(--text-primary);
+    white-space:normal;
+    word-wrap:break-word;
+    overflow-wrap:break-word;
+    max-width:100%;
+    width:100%;
+    transition: all 0.3s ease;
+}
+#zekrText.small-font{
+    font-size:clamp(20px,3.5vw,30px)!important;
+}
+
+.zekr-divider-line{
+    width:60%;
+    height:3px;
+    background:linear-gradient(90deg, transparent, var(--primary-color), var(--border-color-strong), var(--primary-color), transparent);
+    border-radius:50%;
+    margin:clamp(4px,0.6vh,10px) auto;
+    position:relative;
+    opacity:0.7;
+    transition: all 0.3s ease;
+}
+.zekr-divider-line::before{
+    content:'✦';
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:var(--primary-color);
+    font-size:clamp(12px,1.8vw,18px);
+    background:var(--bg-card);
+    padding:0 8px;
+}
+
+#meaning{
+    margin-top:clamp(2px,0.3vh,4px);
+    font-size:clamp(14px,1.8vw,20px);
+    color:var(--text-secondary);
+    line-height:1.8;
+    max-width:95%;
+    transition: all 0.3s ease;
+}
+
+/* ============================================
+===== نوار پیشرفت =====
+============================================ */
+
+.counter-mini-box {
+    width: 100%;
+    max-width: 100%;
+    height: clamp(60px, 10vh, 120px);
+    max-height: clamp(60px, 10vh, 120px);
+    margin: clamp(2px, 0.3vh, 4px) auto;
+    background: var(--bg-card);
+    border: 2px solid var(--border-color-strong);
+    border-radius: clamp(14px, 2.5vh, 20px);
+    box-shadow: 0 4px 20px var(--shadow-color), 0 0 40px var(--primary-color-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+.counter-progress-track {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--bg-input);
+    border-radius: clamp(14px, 2.5vh, 20px);
+    overflow: hidden;
+    z-index: 0;
+}
+
+.counter-progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 0;
+    transition: width 0.08s ease, opacity 0.3s ease;
+    will-change: width, opacity;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--primary-color);
+    opacity: 0.2;
+    overflow: hidden;
+}
+
+.counter-progress-fill.gradient {
+    background: linear-gradient(90deg, 
+        #8b5cf6,
+        var(--primary-color) 40%, 
+        var(--primary-color)
+    );
+}
+
+.counter-progress-fill.complete {
+    opacity: 0.5 !important;
+    animation: progressComplete 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes progressComplete {
+    0% { transform: scaleX(1); }
+    30% { transform: scaleX(1.01); box-shadow: 0 0 40px var(--primary-color-glow-strong); }
+    60% { transform: scaleX(0.99); }
+    100% { transform: scaleX(1); }
+}
+
+.counter-mini-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: clamp(4px, 0.6vh, 8px) clamp(8px, 1.2vw, 14px);
+}
+
+.counter-mini-number {
+    font-size: clamp(40px, 7.5vw, 64px);
+    font-weight: 900;
+    color: var(--text-primary);
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-shadow: 0 0 40px var(--primary-color-alpha);
+    display: inline-block;
+}
+
+.counter-mini-number.pop-change-left {
+    animation: popChangeLeft 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.counter-mini-number.pop-change-right {
+    animation: popChangeRight 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes popChangeLeft {
+    0% { transform: scale(1) rotate(0deg); text-shadow: 0 0 40px var(--primary-color-alpha); }
+    35% { transform: scale(1.7) rotate(-15deg); text-shadow: 0 0 60px var(--primary-color-alpha), 0 0 120px var(--primary-color-glow); }
+    70% { transform: scale(1.1) rotate(5deg); text-shadow: 0 0 30px var(--primary-color-alpha); }
+    100% { transform: scale(1) rotate(0deg); text-shadow: 0 0 40px var(--primary-color-alpha); }
+}
+
+@keyframes popChangeRight {
+    0% { transform: scale(1) rotate(0deg); text-shadow: 0 0 40px var(--primary-color-alpha); }
+    35% { transform: scale(1.7) rotate(15deg); text-shadow: 0 0 60px var(--primary-color-alpha), 0 0 120px var(--primary-color-glow); }
+    70% { transform: scale(1.1) rotate(-5deg); text-shadow: 0 0 30px var(--primary-color-alpha); }
+    100% { transform: scale(1) rotate(0deg); text-shadow: 0 0 40px var(--primary-color-alpha); }
+}
+
+.counter-mini-number.reset-fade {
+    animation: resetFade 0.4s ease-in forwards;
+}
+
+@keyframes resetFade {
+    0% { transform: scale(1) rotate(0deg); opacity: 1; text-shadow: 0 0 40px var(--primary-color-alpha); }
+    100% { transform: scale(0.3) rotate(-10deg); opacity: 0; text-shadow: none; }
+}
+
+.counter-mini-box.success {
+    animation: successGentle 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes successGentle {
+    0% { transform: scale(1); }
+    30% { transform: scale(0.97); }
+    60% { transform: scale(1.01); }
+    100% { transform: scale(1); }
+}
+
+.goal-float-btn {
+    position: absolute;
+    bottom: clamp(-10px, -1.5vh, -6px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(14px, 2.2vw, 18px);
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+    padding: clamp(6px, 0.8vh, 10px) clamp(16px, 3vw, 24px);
+    background: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: clamp(12px, 2vh, 16px);
+    box-shadow: 0 4px 16px var(--shadow-color), 0 0 30px var(--primary-color-glow);
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+    z-index: 5;
+    white-space: nowrap;
+    animation: goalZoomIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.3s ease;
+}
+.goal-float-btn:active {
+    transform: translateX(-50%) scale(0.95);
+    opacity: 0.8;
+}
+.goal-float-btn.hidden {
+    display: none !important;
+}
+
+@keyframes goalZoomIn {
+    from { opacity: 0; transform: translateX(-50%) scale(0.7); }
+    to { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+/* ============================================
+===== شمارنده (دکمه اثر انگشت) =====
+============================================ */
+
+.counterCircleWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    min-height: clamp(190px, 32vh, 360px);
+    max-height: clamp(240px, 42vh, 440px);
+    padding: clamp(8px, 1.5vh, 16px) 0;
+    position: relative;
+}
+
+.counterCircle {
+    width: clamp(218px, 48vw, 368px);
+    height: clamp(218px, 48vw, 368px);
+    border-radius: 50%;
+    border: 4px solid var(--border-color-strong);
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .15s ease;
+    box-shadow: 0 0 80px var(--primary-color-glow-strong), 0 8px 40px var(--shadow-color), inset 0 0 60px var(--primary-color-glow);
+    touch-action: manipulation;
+    position: relative;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+.counterCircle:active{
+    transform: scale(.97);
+}
+.counterCircle svg{
+    width: clamp(85px, 19vw, 150px);
+    height: clamp(85px, 19vw, 150px);
+    display: block;
+    position: relative;
+    z-index: 2;
+    transform: none !important;
+    transition: all .3s ease;
+}
+
+.fingerprint-icon {
+    transition: opacity 0.3s ease;
+}
+.fingerprint-icon.goal-reached {
+    opacity: 0.3 !important;
+}
+
+.fingerprint-icon.goal-message {
+    font-size: clamp(14px, 2.2vw, 18px);
+    font-weight: 600;
+    color: var(--text-primary);
+    background: var(--primary-color-alpha);
+    padding: clamp(6px, 0.8vh, 10px) clamp(10px, 2vw, 16px);
+    border-radius: clamp(12px, 2vh, 16px);
+    border: 2px solid var(--border-color-strong);
+    box-shadow: 0 4px 20px var(--shadow-color), 0 0 40px var(--primary-color-glow);
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    text-align: center;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    max-width: 90%;
+    min-width: 80px;
+    direction: rtl;
+    transition: all 0.3s ease;
+    animation: goalMessageIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.fingerprint-icon.goal-message .reset-icon-small {
+    display: inline-block;
+    width: clamp(20px, 3vw, 28px);
+    height: clamp(20px, 3vw, 28px);
+    flex-shrink: 0;
+}
+.fingerprint-icon.goal-message .reset-icon-small svg {
+    width: 100%;
+    height: 100%;
+    stroke: var(--primary-color);
+    display: block;
+}
+
+@keyframes goalMessageIn {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ============================================
+===== سه دکمه پایین (ویبره - ریست - تم) =====
+============================================ */
+
+.counter-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(6px, 1.2vh, 14px) 0;
+    flex-shrink: 0;
+    min-height: clamp(50px, 8vh, 110px);
+    position: relative;
+    gap: clamp(20px, 4vw, 50px);
+    width: 100%;
+    direction: ltr;
+}
+
+/* ===== دکمه ریست (وسط) ===== */
+.reset-btn {
+    width: clamp(84px, 21.6vw, 180px);
+    height: clamp(84px, 21.6vw, 180px);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .15s ease;
+    box-shadow: 0 4px 16px var(--shadow-color), 0 0 40px var(--primary-color-glow);
+    border: 3px solid var(--border-color-strong);
+    flex-shrink: 0;
+    touch-action: manipulation;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    order: 1;
+}
+.reset-btn:active {
+    transform: scale(.92);
+}
+.reset-btn svg {
+    display: block;
+    fill: none;
+    transition: all .2s ease;
+    width: clamp(42px, 10.8vw, 90px);
+    height: clamp(42px, 10.8vw, 90px);
+    position: relative;
+    z-index: 2;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+#resetBtn svg.zero-state {
+    opacity: 0.3 !important;
+}
+#resetBtn.rotate svg{animation:rotateReset 1s ease;}
+
+@keyframes rotateReset{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(720deg);}
+}
+
+/* ===== دکمه ویبره (راست) ===== */
+.vibrate-btn {
+    width: clamp(44px, 10vw, 80px);
+    height: clamp(44px, 10vw, 80px);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .15s ease;
+    box-shadow: 0 4px 16px var(--shadow-color), 0 0 30px var(--primary-color-glow);
+    border: 3px solid var(--border-color-strong);
+    flex-shrink: 0;
+    touch-action: manipulation;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    order: 2;
+}
+.vibrate-btn:active {
+    transform: scale(.92);
+}
+.vibrate-btn svg {
+    display: block;
+    fill: none;
+    transition: all .2s ease;
+    width: clamp(20px, 4.5vw, 36px);
+    height: clamp(20px, 4.5vw, 36px);
+    position: relative;
+    z-index: 2;
+}
+.vibrate-btn.disabled::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 3px;
+    background: var(--primary-color);
+    transform: translate(-50%, -50%) rotate(-45deg);
+    border-radius: 2px;
+    z-index: 3;
+    opacity: 0.8;
+}
+
+/* ===== دکمه تم (چپ) ===== */
+.theme-toggle-btn {
+    width: clamp(44px, 10vw, 80px);
+    height: clamp(44px, 10vw, 80px);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .15s ease;
+    box-shadow: 0 4px 16px var(--shadow-color), 0 0 30px var(--primary-color-glow);
+    border: 3px solid var(--border-color-strong);
+    flex-shrink: 0;
+    touch-action: manipulation;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    order: 0;
+}
+.theme-toggle-btn:active {
+    transform: scale(.92);
+}
+.theme-toggle-btn svg {
+    display: block;
+    fill: none;
+    transition: all .2s ease;
+    width: clamp(20px, 4.5vw, 36px);
+    height: clamp(20px, 4.5vw, 36px);
+    position: relative;
+    z-index: 2;
+}
+
+/* ============================================
+===== باقی استایل‌ها =====
+============================================ */
+
+#pageCounter .floating-back-btn {
+    display: none !important;
+}
+
+.reset-toast{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: clamp(8px, 1.2vh, 14px) clamp(16px, 3vw, 24px);
+    font-size: clamp(16px, 2.5vw, 20px);
+    color: var(--text-primary);
+    background: var(--bg-card);
+    border: 2px solid var(--border-color-strong);
+    border-radius: clamp(14px, 2.5vh, 20px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-weight: 700;
+    box-shadow: 0 4px 20px var(--shadow-color), 0 0 40px var(--primary-color-glow);
+    max-width: 90%;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 100;
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+}
+.reset-toast .reset-icon {
+    font-size: clamp(18px, 3vw, 26px);
+    margin-left: 4px;
+}
+.reset-toast.show {
+    opacity: 1;
+}
+
+.zekr-select-badge.blink {
+    animation: badgeBlink 0.3s ease 6;
+}
+
+.zekr-count-badge.blink {
+    animation: badgeBlink 0.3s ease 6;
+}
+
+@keyframes badgeBlink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.2; transform: scale(0.85); }
+}
+
+/* ============================================
+===== Media Queries =====
+============================================ */
+
+@media (min-width: 500px) {
+    .counterCircle { width: clamp(250px, 50vw, 400px); height: clamp(250px, 50vw, 400px); }
+    .counterCircle svg { width: clamp(100px, 20vw, 170px); height: clamp(100px, 20vw, 170px); }
+    .counterCircleWrapper { min-height: clamp(200px, 32vh, 380px); max-height: clamp(260px, 42vh, 460px); }
+    .counter-bottom { min-height: clamp(60px, 10vh, 130px); gap: clamp(30px, 6vw, 60px); }
+    .reset-btn { width: clamp(96px, 21.6vw, 192px); height: clamp(96px, 21.6vw, 192px); }
+    .reset-btn svg { width: clamp(48px, 10.8vw, 96px); height: clamp(48px, 10.8vw, 96px); }
+    .vibrate-btn, .theme-toggle-btn { width: clamp(50px, 10vw, 90px); height: clamp(50px, 10vw, 90px); }
+    .vibrate-btn svg, .theme-toggle-btn svg { width: clamp(24px, 4.5vw, 40px); height: clamp(24px, 4.5vw, 40px); }
+    .counter-mini-box { height: clamp(70px, 10vh, 130px); max-height: clamp(70px, 10vh, 130px); }
+    .counter-mini-number { font-size: clamp(44px, 7vw, 60px); }
+    .reset-toast { font-size: clamp(18px, 2.5vw, 22px); }
+    .fingerprint-icon.goal-message { font-size: clamp(16px, 2.5vw, 20px); }
+    .counter-progress-track { border-radius: clamp(14px, 2.5vh, 20px); }
+}
+
+@media (min-width: 700px) {
+    .counterCircle { width: clamp(290px, 54vw, 450px); height: clamp(290px, 54vw, 450px); }
+    .counterCircle svg { width: clamp(120px, 22vw, 200px); height: clamp(120px, 22vw, 200px); }
+    .counterCircleWrapper { min-height: clamp(220px, 35vh, 420px); max-height: clamp(280px, 45vh, 500px); }
+    .counter-bottom { min-height: clamp(70px, 12vh, 150px); gap: clamp(40px, 8vw, 80px); }
+    .reset-btn { width: clamp(108px, 24vw, 216px); height: clamp(108px, 24vw, 216px); }
+    .reset-btn svg { width: clamp(54px, 12vw, 108px); height: clamp(54px, 12vw, 108px); }
+    .vibrate-btn, .theme-toggle-btn { width: clamp(56px, 11vw, 100px); height: clamp(56px, 11vw, 100px); }
+    .vibrate-btn svg, .theme-toggle-btn svg { width: clamp(28px, 5vw, 44px); height: clamp(28px, 5vw, 44px); }
+    .counter-mini-box { height: clamp(80px, 12vh, 150px); max-height: clamp(80px, 12vh, 150px); }
+    .counter-mini-number { font-size: clamp(48px, 7.5vw, 66px); }
+    .reset-toast { font-size: clamp(20px, 2.8vw, 24px); }
+    .fingerprint-icon.goal-message { font-size: clamp(18px, 2.8vw, 22px); }
+    .counter-progress-track { border-radius: clamp(16px, 2.8vh, 22px); }
+}
+
+@media (min-width: 1000px) {
+    .counterCircle { width: clamp(330px, 58vw, 520px); height: clamp(330px, 58vw, 520px); }
+    .counterCircle svg { width: clamp(140px, 24vw, 220px); height: clamp(140px, 24vw, 220px); }
+    .counterCircleWrapper { min-height: clamp(260px, 38vh, 480px); max-height: clamp(320px, 48vh, 560px); }
+    .counter-bottom { min-height: clamp(80px, 14vh, 170px); gap: clamp(50px, 10vw, 100px); }
+    .reset-btn { width: clamp(120px, 26.4vw, 240px); height: clamp(120px, 26.4vw, 240px); }
+    .reset-btn svg { width: clamp(60px, 13.2vw, 120px); height: clamp(60px, 13.2vw, 120px); }
+    .vibrate-btn, .theme-toggle-btn { width: clamp(62px, 12vw, 110px); height: clamp(62px, 12vw, 110px); }
+    .vibrate-btn svg, .theme-toggle-btn svg { width: clamp(32px, 5.5vw, 50px); height: clamp(32px, 5.5vw, 50px); }
+    .counter-mini-box { height: clamp(90px, 14vh, 170px); max-height: clamp(90px, 14vh, 170px); }
+    .counter-mini-number { font-size: clamp(52px, 8vw, 72px); }
+    .reset-toast { font-size: clamp(22px, 3vw, 26px); }
+    .fingerprint-icon.goal-message { font-size: clamp(20px, 3vw, 24px); }
+    .counter-progress-track { border-radius: clamp(18px, 3vh, 24px); }
+}
+
+/* ============================================
+===== حالت روشن/تاریک =====
+============================================ */
+
+body.light .zekrCard{
+    background:var(--bg-card);
+    border:2px solid var(--border-color-strong);
+}
+body.light .zekr-divider-line{
+    background:linear-gradient(90deg, transparent, var(--primary-color), var(--border-color-strong), var(--primary-color), transparent);
+}
+body.light .zekr-divider-line::before{
+    background:var(--bg-card);
+    color:var(--primary-color);
+}
+body.light .counterCircle{
+    border:4px solid var(--border-color-strong);
+}
+body.light .counterCircle svg{
+    fill:#000000 !important;
+}
+body.light .reset-btn svg{
+    stroke:#000000 !important;
+}
+body.light .vibrate-btn svg{
+    stroke:#000000 !important;
+}
+body.light .theme-toggle-btn svg{
+    stroke:#000000 !important;
+}
+body.light .reset-toast{
+    background:var(--bg-card);
+    border:2px solid var(--border-color-strong);
+    color:#000000;
+}
+body.light .goal-float-btn{
+    background:var(--primary-color);
+    border:2px solid var(--primary-color);
+    color:#ffffff;
+}
+body.light .counter-mini-box{
+    background:var(--bg-card);
+    border:2px solid var(--border-color-strong);
+}
+body.light .counter-progress-track{
+    background:var(--bg-input);
+}
+body.light .counter-progress-fill{
+    background:var(--primary-color);
+}
+body.light .counter-mini-number{
+    color:#000000;
+}
+body.light .zekr-count-badge{
+    background:var(--primary-color);
+    color:#ffffff;
+}
+body.light .zekr-select-badge{
+    background:var(--primary-color);
+    color:#ffffff;
+}
+body.light .fingerprint-icon.goal-message{
+    background:var(--bg-card);
+    border:2px solid var(--border-color-strong);
+    color:#000000;
+}
+body.light .fingerprint-icon.goal-message .reset-icon-small svg{
+    stroke:#000000;
+}
+body.light .zekr-translate-toggle{
+    background:var(--primary-color);
+    color:#ffffff;
+}
+body.light .zekr-translate-toggle.active{
+    background:transparent;
+    color:#64748b;
+    border-color:var(--border-color-strong);
+}
+
+body.dark .zekrCard{
+    background:var(--bg-card);
+    border:2px solid var(--border-color-strong);
+}
+body.dark .zekr-divider-line{
+    background:linear-gradient(90deg, transparent, var(--primary-color), var(--border-color-strong), var(--primary-color), transparent);
+}
+body.dark .zekr-divider-line::before{
+    background:var(--bg-card);
+    color:var(--primary-color);
+}
+body.dark .counterCircle{
+    border:4px solid var(--border-color-strong);
+}
+body.dark .counterCircle svg{
+    fill:#ffffff !important;
+}
+body.dark .reset-btn svg{
+    stroke:#ffffff !important;
+}
+body.dark .vibrate-btn svg{
+    stroke:#ffffff !important;
+}
+body.dark .theme-toggle-btn svg{
+    stroke:#ffffff !important;
+}
+body.dark .reset-toast{
+    background:var(--bg-card);
+    border:2px solid var(--border-color-strong);
+    color:#ffffff;
+}
+body.dark .goal-float-btn{
+    background:var(--primary-color);
+    border:2px solid var(--primary-color);
+    color:#ffffff;
+}
+body.dark .counter-mini-box{
+    background:var(--bg-card);
+    border:2px solid var(--border-color-strong);
+}
+body.dark .counter-progress-track{
+    background:rgba(255,255,255,0.05);
+}
+body.dark .counter-progress-fill{
+    background:var(--primary-color);
+}
+body.dark .counter-mini-number{
+    color:#ffffff;
+}
+body.dark .zekr-count-badge{
+    background:var(--primary-color);
+    color:#ffffff;
+}
+body.dark .zekr-select-badge{
+    background:var(--primary-color);
+    color:#ffffff;
+}
+body.dark .fingerprint-icon.goal-message{
+    background:var(--bg-card);
+    border:2px solid var(--border-color-strong);
+    color:#ffffff;
+}
+body.dark .fingerprint-icon.goal-message .reset-icon-small svg{
+    stroke:#ffffff;
+}
+body.dark .zekr-translate-toggle{
+    background:var(--primary-color);
+    color:#ffffff;
+}
+body.dark .zekr-translate-toggle.active{
+    background:transparent;
+    color:#94a3b8;
+    border-color:var(--border-color-strong);
+}
+
+@keyframes popNumber{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.3);}
+    100%{transform:scale(1);}
+}
+@keyframes popSound{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.4);}
+    100%{transform:scale(1);}
+}

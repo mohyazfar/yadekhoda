@@ -1,0 +1,603 @@
+/* ============================================
+add-zekr.css - صفحه افزودن ذکر (نسخه اصلاح‌شده)
+============================================ */
+
+.addZekrMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(10px, 2vh, 22px) clamp(10px, 2.5vw, 20px);
+    overflow-y: auto;
+    gap: clamp(8px, 1.5vh, 14px);
+    justify-content: flex-start;
+    position: relative;
+}
+
+/* ===== بخش‌ها ===== */
+.add-zekr-section {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+/* ===== خط جداکننده بین بالا و پایین ===== */
+.add-zekr-divider {
+    width: 100%;
+    max-width: 480px;
+    margin: clamp(12px, 2vh, 20px) auto;
+    height: 2px;
+    background: var(--border-color-strong);
+    opacity: 0.25;
+    border-radius: 2px;
+}
+
+/* ===== فرم بالا ===== */
+.add-zekr-form {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.5vh, 12px);
+    width: 100%;
+}
+
+.add-zekr-group {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3px, 0.5vh, 6px);
+}
+
+.add-zekr-group label {
+    font-size: clamp(13px, 2vw, 16px);
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.add-zekr-group .required {
+    color: #f87171;
+}
+
+.add-zekr-group input {
+    background: var(--bg-input);
+    border: 2px solid var(--border-color-strong);
+    border-radius: clamp(10px, 2vh, 14px);
+    padding: clamp(10px, 1.8vh, 15px) clamp(12px, 2vw, 16px);
+    font-size: clamp(15px, 2.5vw, 18px);
+    color: var(--text-primary);
+    outline: none;
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    transition: all .3s ease;
+    box-shadow: 0 2px 6px var(--shadow-color);
+    width: 100%;
+}
+
+.add-zekr-group input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 30px var(--primary-color-glow-strong);
+}
+
+.add-zekr-group input.error {
+    border-color: #f87171;
+}
+
+/* ===== دکمه پیش‌نمایش ===== */
+.preview-zekr-btn {
+    padding: clamp(12px, 2vh, 16px);
+    font-size: clamp(16px, 2.8vw, 20px);
+    font-weight: 700;
+    border-radius: clamp(10px, 2vh, 14px);
+    cursor: pointer;
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    transition: all .2s ease;
+    width: 100%;
+    text-align: center;
+    border: 2px solid var(--primary-color);
+    background: var(--primary-color);
+    color: #ffffff;
+    box-shadow: 0 4px 16px var(--shadow-color), 0 0 30px var(--primary-color-glow);
+    margin-top: clamp(4px, 0.6vh, 8px);
+}
+
+.preview-zekr-btn:active {
+    transform: scale(.96);
+    opacity: .8;
+}
+
+/* ===== بخش CSV / فایل ===== */
+.add-zekr-import-title {
+    font-size: clamp(15px, 2.5vw, 19px);
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: right;
+    margin-bottom: clamp(8px, 1.2vh, 12px);
+}
+
+/* ===== کادر انتخاب فایل (خط کامل) ===== */
+.add-zekr-import-box {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(6px, 1vh, 10px);
+    align-items: center;
+    padding: clamp(14px, 2.5vh, 22px) clamp(12px, 2vw, 18px);
+    background: var(--bg-input);
+    border: 2px solid var(--border-color-strong);  /* ← خط کامل */
+    border-radius: clamp(12px, 2.5vh, 18px);
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.csv-import-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: clamp(10px, 1.8vh, 16px) clamp(18px, 3vw, 28px);
+    font-size: clamp(15px, 2.5vw, 19px);
+    font-weight: 600;
+    border-radius: clamp(10px, 2vh, 14px);
+    cursor: pointer;
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    transition: all .2s ease;
+    border: 2px solid var(--border-color-strong);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.csv-import-btn:active {
+    transform: scale(.96);
+}
+
+.csv-import-btn svg {
+    width: clamp(20px, 3vw, 26px);
+    height: clamp(20px, 3vw, 26px);
+    stroke: var(--text-primary);
+}
+
+.csv-file-name {
+    font-size: clamp(12px, 1.8vw, 15px);
+    color: var(--text-muted);
+    text-align: center;
+    min-height: 20px;
+}
+
+/* ===== دکمه شناور ===== */
+.floating-import-btn {
+    position: fixed;
+    bottom: clamp(80px, 12vh, 120px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: clamp(14px, 2vh, 20px) clamp(28px, 5vw, 48px);
+    font-size: clamp(18px, 3vw, 24px);
+    font-weight: 700;
+    border-radius: clamp(14px, 2.5vh, 20px);
+    cursor: pointer;
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    transition: all .3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: none;
+    background: var(--primary-color);
+    color: #ffffff;
+    box-shadow: 0 8px 32px rgba(var(--primary-rgb), 0.4), 0 0 60px var(--primary-color-glow);
+    z-index: 100;
+    animation: floatUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: none;
+}
+
+.floating-import-btn:active {
+    transform: translateX(-50%) scale(.94);
+    opacity: .8;
+}
+
+.floating-import-btn.show {
+    display: block !important;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(30px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+}
+
+/* ===== راهنمای فایل نمونه (پایین صفحه) ===== */
+.add-zekr-csv-info {
+    margin-top: clamp(8px, 1.2vh, 12px);
+    padding: clamp(10px, 1.5vh, 16px) clamp(10px, 2vw, 16px);
+    background: var(--bg-card);
+    border: 2px dashed var(--border-color-strong);  /* ← خط چین */
+    border-radius: clamp(12px, 2.5vh, 18px);
+    box-shadow: 0 4px 16px var(--shadow-color), 0 0 30px var(--primary-color-glow);
+    direction: rtl;
+}
+
+/* ===== عنوان ساختار فایل نمونه (بدون استیکر) ===== */
+.csv-info-title {
+    font-size: clamp(14px, 2.2vw, 18px);
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: clamp(8px, 1.2vh, 12px);
+}
+
+/* ===== جدول اکسل با سطرهای کوچکتر ===== */
+.csv-excel-table {
+    overflow-x: auto;
+    margin-bottom: clamp(6px, 0.8vh, 10px);
+    direction: rtl;
+}
+
+.csv-excel-table table {
+    width: 100%;
+    border-collapse: collapse;
+    direction: rtl;
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+}
+
+/* ===== ارتفاع سطرها کوچکتر ===== */
+.csv-excel-table th,
+.csv-excel-table td {
+    padding: clamp(3px, 0.5vh, 6px) clamp(6px, 0.8vw, 10px);  /* ← کوچکتر */
+    border: 1px solid var(--border-color-strong);
+    text-align: center;
+    font-size: clamp(11px, 1.4vw, 13px);  /* ← کوچکتر */
+}
+
+.csv-excel-table th {
+    background: var(--bg-input);
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.csv-excel-table .row-number {
+    background: var(--bg-input);
+    font-weight: 700;
+    color: var(--text-muted);
+    font-size: clamp(10px, 1.2vw, 12px);
+    min-width: 24px;
+}
+
+.csv-excel-table .col-a {
+    background: rgba(239, 68, 68, 0.06);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-family: 'Quran','Love',Tahoma,'Vazirmatn',sans-serif;
+}
+
+.csv-excel-table .col-b {
+    background: rgba(148, 163, 184, 0.06);
+    color: var(--text-secondary);
+}
+
+.csv-excel-table .col-c {
+    background: rgba(var(--primary-rgb), 0.08);
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.csv-excel-table .required {
+    color: #f87171;
+    font-weight: 700;
+    font-size: clamp(9px, 1vw, 11px);
+}
+
+/* ===== فرمت‌های قابل قبول (جایگزین رنگ‌ها) ===== */
+.csv-formats-text {
+    text-align: center;
+    font-size: clamp(12px, 1.6vw, 15px);
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding: clamp(4px, 0.6vh, 8px) 0;
+    border-top: 1px solid var(--border-color-strong);
+    margin-top: clamp(4px, 0.6vh, 8px);
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+}
+
+.csv-formats-text .highlight {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* ===== حذف رنگ‌های قبلی ===== */
+.csv-legend {
+    display: none !important;  /* ← حذف کامل */
+}
+
+/* ===== مخفی کردن بخش‌ها هنگام نمایش پیش‌نمایش فایل ===== */
+.add-zekr-section.hidden,
+.add-zekr-divider.hidden,
+#addZekrImportTitle.hidden,
+#addZekrImportBox.hidden,
+#addZekrCsvInfo.hidden {
+    display: none !important;
+}
+
+/* ============================================
+===== بخش پیش‌نمایش دستی (اصلاح‌شده) =====
+============================================ */
+
+/* ===== نمایش تمام‌صفحه پیش‌نمایش ===== */
+#addZekrMain.preview-mode {
+    padding: clamp(6px, 1vh, 12px) clamp(6px, 1.2vw, 14px);
+    justify-content: space-between;
+    gap: clamp(8px, 1.2vh, 14px);
+    background: var(--bg-page);
+    flex: 1;
+    height: 100%;
+    min-height: 0;
+}
+
+#addZekrMain.preview-mode .add-zekr-section {
+    max-width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 0;
+}
+
+#addZekrMain.preview-mode #csvDataTableContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    min-height: 0;
+    height: 100%;
+    max-height: 100%;
+}
+
+#addZekrMain.preview-mode #csvDataTableContainer > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: none;
+    min-height: 0;
+    margin: 0;
+    border-radius: clamp(8px, 1.5vh, 14px);
+    border: 2px solid var(--border-color-strong);
+    background: var(--bg-card);
+    box-shadow: 0 4px 20px var(--shadow-color), 0 0 40px var(--primary-color-glow);
+}
+
+#addZekrMain.preview-mode #csvDataTableContainer > div > div:last-child {
+    flex: 1;
+    max-height: none;
+    min-height: 100px;
+    overflow-y: auto;
+    padding: clamp(4px, 0.6vh, 10px);
+}
+
+#addZekrMain.preview-mode #csvDataTableContainer table {
+    width: 100%;
+    height: auto;
+}
+
+#addZekrMain.preview-mode #csvDataTableContainer table tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* ===== دکمه حذف (ضربدر) ===== */
+.delete-row-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 2px 4px;
+    transition: all .2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    opacity: 0.5;
+    border-radius: 4px;
+}
+
+.delete-row-btn:hover {
+    opacity: 1;
+    background: rgba(var(--primary-rgb), 0.1);
+}
+
+.delete-row-btn:active {
+    transform: scale(.85);
+}
+
+.delete-row-btn svg {
+    width: clamp(16px, 2.2vw, 20px);
+    height: clamp(16px, 2.2vw, 20px);
+    stroke: var(--primary-color);
+    display: block;
+}
+
+/* ===== هدر جدول ===== */
+#addZekrMain.preview-mode #csvDataTableContainer > div > div:first-child {
+    flex-shrink: 0;
+    padding: clamp(8px, 1.2vh, 14px) clamp(12px, 2vw, 18px);
+    background: var(--bg-input);
+    border-bottom: 2px solid var(--border-color-strong);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ============================================
+===== صفحه پیش‌نمایش دستی (اصلاح دکمه‌ها) =====
+============================================ */
+
+/* ===== کارت پیش‌نمایش ===== */
+.previewMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(10px, 2vh, 22px) clamp(10px, 2.5vw, 20px);
+    gap: clamp(12px, 2vh, 20px);
+    justify-content: center;
+    align-items: center;
+    min-height: 0;
+}
+
+.preview-card {
+    width: 100%;
+    max-width: 480px;
+    background: var(--bg-card);
+    border: 2px solid var(--border-color-strong);
+    border-radius: clamp(14px, 2.5vh, 20px);
+    padding: clamp(18px, 3vh, 30px) clamp(14px, 2.8vw, 24px);
+    box-shadow: 0 8px 24px var(--shadow-color), 0 0 60px var(--primary-color-glow);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1.5vh, 16px);
+    flex-shrink: 0;
+}
+
+.preview-card-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: clamp(4px, 0.6vh, 8px) 0;
+    border-bottom: 1px solid var(--border-color-strong);
+}
+
+.preview-card-item:last-child {
+    border-bottom: none;
+}
+
+.preview-card-label {
+    font-size: clamp(11px, 1.6vw, 14px);
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.preview-card-value {
+    font-size: clamp(16px, 2.8vw, 22px);
+    font-weight: 700;
+    color: var(--text-primary);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+.preview-text-item .preview-card-value {
+    font-family: 'Quran', 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    font-size: clamp(20px, 3.5vw, 30px);
+}
+
+.preview-meaning-item .preview-card-value {
+    font-size: clamp(15px, 2.4vw, 20px);
+    color: var(--text-secondary);
+}
+
+.preview-target-item .preview-card-value {
+    color: var(--primary-color);
+}
+
+/* ===== دکمه‌های پیش‌نمایش (هم‌اندازه و هم‌سبک) ===== */
+.preview-actions {
+    display: flex;
+    gap: clamp(10px, 2vw, 16px);
+    width: 100%;
+    max-width: 480px;
+    flex-shrink: 0;
+    justify-content: center;
+}
+
+/* ===== هر دو دکمه کاملاً هم‌اندازه ===== */
+.preview-edit-btn,
+.preview-confirm-btn {
+    flex: 1;
+    min-width: 0;
+    padding: clamp(12px, 2vh, 16px) clamp(16px, 3vw, 24px);
+    font-size: clamp(16px, 2.8vw, 20px);
+    font-weight: 700;
+    border-radius: clamp(10px, 2vh, 14px);
+    cursor: pointer;
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    transition: all .2s ease;
+    text-align: center;
+    box-shadow: 0 4px 16px var(--shadow-color), 0 0 30px var(--primary-color-glow);
+    flex-shrink: 1;
+    max-width: 200px;
+}
+
+.preview-edit-btn:active,
+.preview-confirm-btn:active {
+    transform: scale(.96);
+}
+
+/* ===== دکمه اصلاح (مثل دکمه انصراف دیالوگ) ===== */
+.preview-edit-btn {
+    border: 2px solid var(--border-color-strong);
+    background: transparent;
+    color: var(--text-secondary);
+}
+
+.preview-edit-btn:active {
+    background: var(--bg-input);
+}
+
+/* ===== دکمه تایید (مثل دکمه اصلی) ===== */
+.preview-confirm-btn {
+    border: 2px solid var(--primary-color);
+    background: var(--primary-color);
+    color: #ffffff;
+}
+
+.preview-confirm-btn:active {
+    opacity: .8;
+}
+
+/* ============================================
+===== حالت روشن/تاریک =====
+============================================ */
+
+body.light .add-zekr-group input {
+    background: var(--bg-input);
+}
+
+body.light .csv-import-btn {
+    background: var(--bg-card);
+}
+
+body.light .add-zekr-csv-info {
+    background: var(--bg-card);
+}
+
+body.light .preview-card {
+    background: var(--bg-card);
+}
+
+body.light .preview-edit-btn {
+    background: transparent;
+}
+
+body.dark .add-zekr-group input {
+    background: transparent;
+}
+
+body.dark .csv-import-btn {
+    background: transparent;
+}
+
+body.dark .floating-import-btn {
+    background: var(--primary-color);
+    color: #ffffff;
+}
+
+body.dark .add-zekr-csv-info {
+    background: transparent;
+}
+
+body.dark .preview-card {
+    background: var(--bg-card);
+}
+
+body.dark .preview-edit-btn {
+    background: transparent;
+}

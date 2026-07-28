@@ -1,0 +1,190 @@
+/* ============================================
+core.css - استایل‌های پایه
+============================================ */
+
+@font-face{font-family:"Love";src:url("../fonts/love.ttf") format("truetype")}
+@font-face{font-family:"Quran";src:url("../fonts/QuranTaha.ttf") format("truetype")}
+
+:root{
+    --primary-color:#38bdf8;
+    --primary-rgb:56,189,248;
+    --primary-color-alpha:rgba(56,189,248,0.25);
+    --primary-color-glow:rgba(56,189,248,0.15);
+    --primary-color-glow-strong:rgba(56,189,248,0.3);
+    --border-color:rgba(56,189,248,0.3);
+    --border-color-strong:#38bdf8;
+    --bg-page:#f8fafc;
+    --bg-card:#ffffff;
+    --bg-input:#f1f5f9;
+    --bg-btn:#ffffff;
+    --text-primary:#0f172a;
+    --text-secondary:#475569;
+    --text-muted:#94a3b8;
+    --shadow-color:rgba(0,0,0,0.06);
+    --shadow-glow:rgba(56,189,248,0.12)
+}
+
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+*{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+input,textarea,select{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
+
+html,body{width:100%;height:100%;overflow:hidden;font-family:"Love",Tahoma,Vazirmatn,sans-serif;background:var(--bg-page);color:var(--text-primary)}
+body{background:#f8fafc;margin:0;padding:0}
+.app{visibility:hidden}
+body.fully-loaded .app{visibility:visible}
+
+button,input,textarea,select{font-family:"Love",Tahoma,Vazirmatn,sans-serif}
+
+.app{width:100%;max-width:100%;margin:0;height:100vh;display:flex;flex-direction:column;position:relative;overflow:hidden;background:var(--bg-page)}
+
+.page{display:none;flex:1;flex-direction:column;height:100%}
+.page.active{display:flex}
+
+/* ===== هدر ===== */
+.app-header{
+    display:none;
+    flex-shrink:0;
+    background:var(--primary-color);
+    padding:clamp(2px,0.4vh,6px) clamp(4px,0.8vw,10px);
+    z-index:50;
+    width:100%;
+    height:auto;
+    overflow:hidden;
+    border-bottom:2px solid var(--border-color-strong);
+    box-shadow:0 2px 20px var(--shadow-color);
+    transition:all .3s ease;
+    min-height:clamp(32px,5vh,44px);
+}
+#pageHome .app-header{display:flex}
+
+.header-content{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    direction:rtl;
+}
+
+.header-zekr-box{
+    width:100%;
+    max-width:100%;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    padding:clamp(2px,0.3vh,4px) clamp(4px,0.6vw,8px);
+    transition:all .2s ease;
+    border-radius:clamp(4px,0.6vh,8px);
+}
+.header-zekr-box:active{transform:scale(.97);background:rgba(255,255,255,0.08)}
+
+.header-zekr-text{
+    font-size:clamp(14px,2.8vw,22px);
+    font-weight:bold;
+    font-family:'Love','Tahoma','Vazirmatn',sans-serif;
+    color:#ffffff;
+    text-align:center;
+    line-height:1.4;
+    text-shadow:0 1px 4px rgba(0,0,0,0.1);
+    width:100%;
+    padding:0 clamp(2px,0.3vw,4px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    direction:rtl;
+    gap:clamp(4px,0.8vw,10px);
+}
+
+.header-icon-right,
+.header-icon-left {
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    line-height:1;
+    width:clamp(16px,2.2vw,22px);
+    height:clamp(16px,2.2vw,22px);
+    color:var(--primary-color) !important;
+}
+.header-icon-right svg,
+.header-icon-left svg {
+    width:100%;
+    height:100%;
+    display:block;
+    stroke:var(--primary-color) !important;
+    fill:none;
+}
+.header-icon-right svg polygon,
+.header-icon-left svg polygon {
+    stroke:var(--primary-color) !important;
+    fill:none;
+}
+.header-icon-right.filled svg polygon,
+.header-icon-left.filled svg polygon {
+    fill:#ffffff !important;
+    stroke:#ffffff !important;
+}
+
+.header-zekr-content{
+    font-size:clamp(16px,3.2vw,26px);
+    font-weight:bold;
+    font-family:'Quran','Love',Tahoma,'Vazirmatn',sans-serif;
+    color:#ffffff;
+    text-align:center;
+    line-height:1.4;
+    text-shadow:0 1px 4px rgba(0,0,0,0.1);
+    direction:rtl;
+    flex-shrink:1;
+}
+
+.header-count{display:none !important}
+
+body.light{--text-primary:#0f172a;--text-secondary:#475569;--text-muted:#94a3b8}
+body.dark{--text-primary:#e8edf5;--text-secondary:#94a3b8;--text-muted:#64748b}
+
+body.light .app-header{background:transparent !important;border-bottom:2px solid var(--border-color-strong)}
+body.light .header-zekr-text{color:var(--text-primary)}
+body.light .header-zekr-content{color:var(--text-primary)}
+body.light .header-label{color:var(--text-secondary)}
+body.light .header-count{color:var(--text-secondary)}
+
+body.dark .app-header{background:transparent !important;border-bottom:2px solid var(--border-color-strong)}
+body.dark .header-zekr-text{color:var(--text-primary)}
+body.dark .header-zekr-content{color:var(--text-primary)}
+body.dark .header-label{color:var(--text-secondary)}
+body.dark .header-count{color:var(--text-secondary)}
+
+/* ===== 32 تم رنگی ===== */
+body[data-theme="0"]{--primary-color:#38bdf8;--primary-rgb:56,189,248;--primary-color-alpha:rgba(56,189,248,0.25);--primary-color-glow:rgba(56,189,248,0.15);--primary-color-glow-strong:rgba(56,189,248,0.3);--border-color:rgba(56,189,248,0.3);--border-color-strong:#38bdf8}
+body[data-theme="1"]{--primary-color:#dc2626;--primary-rgb:220,38,38;--primary-color-alpha:rgba(220,38,38,0.25);--primary-color-glow:rgba(220,38,38,0.15);--primary-color-glow-strong:rgba(220,38,38,0.3);--border-color:rgba(220,38,38,0.3);--border-color-strong:#dc2626}
+body[data-theme="2"]{--primary-color:#f97316;--primary-rgb:249,115,22;--primary-color-alpha:rgba(249,115,22,0.25);--primary-color-glow:rgba(249,115,22,0.15);--primary-color-glow-strong:rgba(249,115,22,0.3);--border-color:rgba(249,115,22,0.3);--border-color-strong:#f97316}
+body[data-theme="3"]{--primary-color:#f59e0b;--primary-rgb:245,158,11;--primary-color-alpha:rgba(245,158,11,0.25);--primary-color-glow:rgba(245,158,11,0.15);--primary-color-glow-strong:rgba(245,158,11,0.3);--border-color:rgba(245,158,11,0.3);--border-color-strong:#f59e0b}
+body[data-theme="4"]{--primary-color:#eab308;--primary-rgb:234,179,8;--primary-color-alpha:rgba(234,179,8,0.25);--primary-color-glow:rgba(234,179,8,0.15);--primary-color-glow-strong:rgba(234,179,8,0.3);--border-color:rgba(234,179,8,0.3);--border-color-strong:#eab308}
+body[data-theme="5"]{--primary-color:#22c55e;--primary-rgb:34,197,94;--primary-color-alpha:rgba(34,197,94,0.25);--primary-color-glow:rgba(34,197,94,0.15);--primary-color-glow-strong:rgba(34,197,94,0.3);--border-color:rgba(34,197,94,0.3);--border-color-strong:#22c55e}
+body[data-theme="6"]{--primary-color:#059669;--primary-rgb:5,150,105;--primary-color-alpha:rgba(5,150,105,0.25);--primary-color-glow:rgba(5,150,105,0.15);--primary-color-glow-strong:rgba(5,150,105,0.3);--border-color:rgba(5,150,105,0.3);--border-color-strong:#059669}
+body[data-theme="7"]{--primary-color:#0d9488;--primary-rgb:13,148,136;--primary-color-alpha:rgba(13,148,136,0.25);--primary-color-glow:rgba(13,148,136,0.15);--primary-color-glow-strong:rgba(13,148,136,0.3);--border-color:rgba(13,148,136,0.3);--border-color-strong:#0d9488}
+body[data-theme="8"]{--primary-color:#06b6d4;--primary-rgb:6,182,212;--primary-color-alpha:rgba(6,182,212,0.25);--primary-color-glow:rgba(6,182,212,0.15);--primary-color-glow-strong:rgba(6,182,212,0.3);--border-color:rgba(6,182,212,0.3);--border-color-strong:#06b6d4}
+body[data-theme="9"]{--primary-color:#2563eb;--primary-rgb:37,99,235;--primary-color-alpha:rgba(37,99,235,0.25);--primary-color-glow:rgba(37,99,235,0.15);--primary-color-glow-strong:rgba(37,99,235,0.3);--border-color:rgba(37,99,235,0.3);--border-color-strong:#2563eb}
+body[data-theme="10"]{--primary-color:#1e40af;--primary-rgb:30,64,175;--primary-color-alpha:rgba(30,64,175,0.25);--primary-color-glow:rgba(30,64,175,0.15);--primary-color-glow-strong:rgba(30,64,175,0.3);--border-color:rgba(30,64,175,0.3);--border-color-strong:#1e40af}
+body[data-theme="11"]{--primary-color:#7c3aed;--primary-rgb:124,58,237;--primary-color-alpha:rgba(124,58,237,0.25);--primary-color-glow:rgba(124,58,237,0.15);--primary-color-glow-strong:rgba(124,58,237,0.3);--border-color:rgba(124,58,237,0.3);--border-color-strong:#7c3aed}
+body[data-theme="12"]{--primary-color:#8b5cf6;--primary-rgb:139,92,246;--primary-color-alpha:rgba(139,92,246,0.25);--primary-color-glow:rgba(139,92,246,0.15);--primary-color-glow-strong:rgba(139,92,246,0.3);--border-color:rgba(139,92,246,0.3);--border-color-strong:#8b5cf6}
+body[data-theme="13"]{--primary-color:#a855f7;--primary-rgb:168,85,247;--primary-color-alpha:rgba(168,85,247,0.25);--primary-color-glow:rgba(168,85,247,0.15);--primary-color-glow-strong:rgba(168,85,247,0.3);--border-color:rgba(168,85,247,0.3);--border-color-strong:#a855f7}
+body[data-theme="14"]{--primary-color:#ec4899;--primary-rgb:236,72,153;--primary-color-alpha:rgba(236,72,153,0.25);--primary-color-glow:rgba(236,72,153,0.15);--primary-color-glow-strong:rgba(236,72,153,0.3);--border-color:rgba(236,72,153,0.3);--border-color-strong:#ec4899}
+body[data-theme="15"]{--primary-color:#db2777;--primary-rgb:219,39,119;--primary-color-alpha:rgba(219,39,119,0.25);--primary-color-glow:rgba(219,39,119,0.15);--primary-color-glow-strong:rgba(219,39,119,0.3);--border-color:rgba(219,39,119,0.3);--border-color-strong:#db2777}
+body[data-theme="16"]{--primary-color:#e11d48;--primary-rgb:225,29,72;--primary-color-alpha:rgba(225,29,72,0.25);--primary-color-glow:rgba(225,29,72,0.15);--primary-color-glow-strong:rgba(225,29,72,0.3);--border-color:rgba(225,29,72,0.3);--border-color-strong:#e11d48}
+body[data-theme="17"]{--primary-color:#be123c;--primary-rgb:190,18,60;--primary-color-alpha:rgba(190,18,60,0.25);--primary-color-glow:rgba(190,18,60,0.15);--primary-color-glow-strong:rgba(190,18,60,0.3);--border-color:rgba(190,18,60,0.3);--border-color-strong:#be123c}
+body[data-theme="18"]{--primary-color:#fb7185;--primary-rgb:251,113,133;--primary-color-alpha:rgba(251,113,133,0.25);--primary-color-glow:rgba(251,113,133,0.15);--primary-color-glow-strong:rgba(251,113,133,0.3);--border-color:rgba(251,113,133,0.3);--border-color-strong:#fb7185}
+body[data-theme="19"]{--primary-color:#ea580c;--primary-rgb:234,88,12;--primary-color-alpha:rgba(234,88,12,0.25);--primary-color-glow:rgba(234,88,12,0.15);--primary-color-glow-strong:rgba(234,88,12,0.3);--border-color:rgba(234,88,12,0.3);--border-color-strong:#ea580c}
+body[data-theme="20"]{--primary-color:#d97706;--primary-rgb:217,119,6;--primary-color-alpha:rgba(217,119,6,0.25);--primary-color-glow:rgba(217,119,6,0.15);--primary-color-glow-strong:rgba(217,119,6,0.3);--border-color:rgba(217,119,6,0.3);--border-color-strong:#d97706}
+body[data-theme="21"]{--primary-color:#65a30d;--primary-rgb:101,163,13;--primary-color-alpha:rgba(101,163,13,0.25);--primary-color-glow:rgba(101,163,13,0.15);--primary-color-glow-strong:rgba(101,163,13,0.3);--border-color:rgba(101,163,13,0.3);--border-color-strong:#65a30d}
+body[data-theme="22"]{--primary-color:#15803d;--primary-rgb:21,128,61;--primary-color-alpha:rgba(21,128,61,0.25);--primary-color-glow:rgba(21,128,61,0.15);--primary-color-glow-strong:rgba(21,128,61,0.3);--border-color:rgba(21,128,61,0.3);--border-color-strong:#15803d}
+body[data-theme="23"]{--primary-color:#0f766e;--primary-rgb:15,118,110;--primary-color-alpha:rgba(15,118,110,0.25);--primary-color-glow:rgba(15,118,110,0.15);--primary-color-glow-strong:rgba(15,118,110,0.3);--border-color:rgba(15,118,110,0.3);--border-color-strong:#0f766e}
+body[data-theme="24"]{--primary-color:#0284c7;--primary-rgb:2,132,199;--primary-color-alpha:rgba(2,132,199,0.25);--primary-color-glow:rgba(2,132,199,0.15);--primary-color-glow-strong:rgba(2,132,199,0.3);--border-color:rgba(2,132,199,0.3);--border-color-strong:#0284c7}
+body[data-theme="25"]{--primary-color:#0369a1;--primary-rgb:3,105,161;--primary-color-alpha:rgba(3,105,161,0.25);--primary-color-glow:rgba(3,105,161,0.15);--primary-color-glow-strong:rgba(3,105,161,0.3);--border-color:rgba(3,105,161,0.3);--border-color-strong:#0369a1}
+body[data-theme="26"]{--primary-color:#1d4ed8;--primary-rgb:29,78,216;--primary-color-alpha:rgba(29,78,216,0.25);--primary-color-glow:rgba(29,78,216,0.15);--primary-color-glow-strong:rgba(29,78,216,0.3);--border-color:rgba(29,78,216,0.3);--border-color-strong:#1d4ed8}
+body[data-theme="27"]{--primary-color:#3730a3;--primary-rgb:55,48,163;--primary-color-alpha:rgba(55,48,163,0.25);--primary-color-glow:rgba(55,48,163,0.15);--primary-color-glow-strong:rgba(55,48,163,0.3);--border-color:rgba(55,48,163,0.3);--border-color-strong:#3730a3}
+body[data-theme="28"]{--primary-color:#6d28d9;--primary-rgb:109,40,217;--primary-color-alpha:rgba(109,40,217,0.25);--primary-color-glow:rgba(109,40,217,0.15);--primary-color-glow-strong:rgba(109,40,217,0.3);--border-color:rgba(109,40,217,0.3);--border-color-strong:#6d28d9}
+body[data-theme="29"]{--primary-color:#86198f;--primary-rgb:134,25,143;--primary-color-alpha:rgba(134,25,143,0.25);--primary-color-glow:rgba(134,25,143,0.15);--primary-color-glow-strong:rgba(134,25,143,0.3);--border-color:rgba(134,25,143,0.3);--border-color-strong:#86198f}
+body[data-theme="30"]{--primary-color:#9d174d;--primary-rgb:157,23,77;--primary-color-alpha:rgba(157,23,77,0.25);--primary-color-glow:rgba(157,23,77,0.15);--primary-color-glow-strong:rgba(157,23,77,0.3);--border-color:rgba(157,23,77,0.3);--border-color-strong:#9d174d}
+body[data-theme="31"]{--primary-color:#b91c1c;--primary-rgb:185,28,28;--primary-color-alpha:rgba(185,28,28,0.25);--primary-color-glow:rgba(185,28,28,0.15);--primary-color-glow-strong:rgba(185,28,28,0.3);--border-color:rgba(185,28,28,0.3);--border-color-strong:#b91c1c}

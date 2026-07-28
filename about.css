@@ -1,0 +1,190 @@
+/* ============================================
+about.css - صفحه درباره (نسخه نهایی)
+============================================ */
+
+.aboutMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(8px, 1.5vh, 16px) clamp(8px, 1.5vw, 16px);
+    gap: clamp(4px, 0.6vh, 8px);
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.about-content-box {
+    width: 100%;
+    max-width: 520px;
+    border-radius: clamp(12px, 2.5vh, 20px);
+    padding: clamp(16px, 2.8vh, 26px) clamp(14px, 2.8vw, 22px);
+    box-shadow: 0 8px 24px var(--shadow-color), 0 0 60px var(--primary-color-glow);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border: 2px solid var(--border-color-strong);
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+    max-height: 100%;
+    position: relative;
+}
+
+.about-content {
+    text-align: justify;
+    direction: rtl;
+    line-height: 1.9;
+    font-size: clamp(13px, 2vw, 16px);
+    color: var(--text-primary);
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    padding-bottom: clamp(4px, 0.6vh, 8px);
+}
+
+/* ===== آیه اول (وسط‌چین) ===== */
+.about-ayah-section {
+    text-align: center;
+    margin-top: clamp(4px, 0.6vh, 8px);
+    margin-bottom: clamp(4px, 0.6vh, 8px);
+}
+
+.about-stars {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(6px, 1vw, 12px);
+    margin-bottom: clamp(2px, 0.4vh, 6px);
+}
+
+.about-stars .star-icon {
+    width: clamp(20px, 3vw, 32px);
+    height: clamp(20px, 3vw, 32px);
+    color: var(--primary-color);
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+.about-ayah {
+    font-family: 'Quran', 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    font-size: clamp(20px, 3.5vw, 36px);
+    line-height: 1.6;
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+.about-ayah-meaning {
+    text-align: center;
+    font-size: clamp(14px, 2vw, 18px);
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-top: clamp(2px, 0.4vh, 4px);
+}
+
+.about-ayah-ref {
+    text-align: center;
+    font-size: clamp(11px, 1.6vw, 14px);
+    color: var(--text-muted);
+    margin-bottom: 0;
+}
+
+/* ===== متن برنامه (Justify) ===== */
+.about-message {
+    text-align: justify;
+    direction: rtl;
+    line-height: 2;
+    font-size: clamp(13px, 2vw, 16px);
+    color: var(--text-secondary);
+    margin: clamp(4px, 0.6vh, 8px) 0;
+    padding: 0 clamp(4px, 0.6vw, 8px);
+}
+
+.about-message .msg-icon {
+    font-size: clamp(16px, 2.5vw, 20px);
+    display: inline-block;
+    margin-left: 4px;
+}
+
+/* ===== طراحی و توسعه (راست‌چین) ===== */
+.about-dev-title {
+    text-align: right;
+    font-size: clamp(15px, 2.4vw, 19px);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: clamp(6px, 1vh, 10px);
+    margin-bottom: clamp(2px, 0.3vh, 4px);
+    padding-right: clamp(4px, 0.6vw, 8px);
+}
+
+/* ===== آیه دوم (وسط‌چین) ===== */
+.about-footer-text {
+    text-align: center;
+    font-family: 'Quran', 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    font-size: clamp(16px, 2.2vw, 20px);
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin: clamp(8px, 1.2vh, 14px) 0;
+    opacity: 0.8;
+    direction: rtl;
+    position: relative;
+    z-index: 2;
+}
+
+/* ============================================
+===== امضا (داخل کادر، بعد از طراحی و توسعه) =====
+============================================ */
+
+.signature-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: clamp(4px, 0.6vh, 8px) 0;
+    padding: 4px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.signature-img {
+    width: clamp(400px, 75vw, 580px);
+    height: auto;
+    max-height: 220px;
+    display: block;
+    background: transparent;
+    object-fit: contain;
+    transition: all 0.4s ease;
+}
+
+.about-divider {
+    height: 2px;
+    background: var(--border-color-strong);
+    border: none;
+    margin: clamp(6px, 0.8vh, 10px) 0;
+    opacity: 0.4;
+}
+
+/* ============================================
+===== حالت روشن/تاریک =====
+============================================ */
+
+body.light .about-content-box {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color-strong);
+}
+body.light .about-divider {
+    background: var(--border-color-strong);
+}
+body.light .signature-img {
+    filter: brightness(0) saturate(100%) invert(27%) sepia(89%) saturate(1000%) hue-rotate(180deg);
+}
+
+body.dark .about-content-box {
+    background: transparent;
+    border: 2px solid var(--border-color-strong);
+}
+body.dark .about-divider {
+    background: var(--border-color-strong);
+}
+body.dark .signature-img {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg);
+}

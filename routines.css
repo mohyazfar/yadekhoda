@@ -1,0 +1,978 @@
+/* ============================================
+routines.css - صفحه روال‌ها (نسخه کامل نهایی)
+============================================ */
+
+/* ===== هدر ===== */
+.routines-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: clamp(4px, 0.8vh, 10px) clamp(12px, 2.5vw, 20px);
+    border-bottom: 2px solid var(--border-color-strong);
+    flex-shrink: 0;
+    background: var(--bg-card);
+    box-shadow: 0 2px 16px var(--shadow-color), 0 0 30px var(--primary-color-glow);
+    min-height: clamp(38px, 5.6vh, 50px);
+    width: 100%;
+    direction: rtl;
+}
+
+.routines-header-left {
+    display: flex;
+    gap: clamp(8px, 1.5vw, 14px);
+    align-items: center;
+    justify-content: flex-start;
+    order: 1;
+}
+
+.routines-header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(6px, 1vw, 12px);
+    order: 0;
+}
+
+.routines-header-count-text {
+    font-size: clamp(14px, 2.2vw, 18px);
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    white-space: nowrap;
+}
+
+.routines-header-count-text .count-number {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: clamp(18px, 3vw, 24px);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+}
+
+.routines-header-btn {
+    width: clamp(40px, 7vw, 52px);
+    height: clamp(40px, 7vw, 52px);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s ease;
+    box-shadow: 0 2px 12px var(--shadow-color), 0 0 20px var(--primary-color-glow);
+    border: 2px solid var(--border-color-strong);
+    flex-shrink: 0;
+    touch-action: manipulation;
+    background: transparent;
+}
+
+.routines-header-btn:active {
+    transform: scale(.92);
+}
+
+.routines-header-btn svg {
+    display: block;
+    fill: none;
+    transition: all .2s ease;
+    width: clamp(24px, 4vw, 32px);
+    height: clamp(24px, 4vw, 32px);
+    stroke: var(--text-primary);
+}
+
+.routines-header-btn.add-btn {
+    border: 2px solid var(--border-color-strong);
+    background: transparent;
+}
+
+.routines-header-btn.add-btn svg {
+    stroke: var(--text-primary);
+}
+
+.routines-header-btn.back-btn svg {
+    stroke: var(--text-primary);
+}
+
+.routines-header-btn.add-btn:active,
+.routines-header-btn.back-btn:active {
+    transform: scale(.92);
+}
+
+/* ===== محتوای اصلی ===== */
+.routinesMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(8px, 1.8vh, 20px) clamp(8px, 2vw, 20px);
+    overflow-y: auto;
+    gap: clamp(8px, 1.2vh, 14px);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    min-height: 0;
+}
+
+.routinesMain::-webkit-scrollbar {
+    display: none;
+}
+
+#routinesListContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.2vh, 14px);
+    overflow-y: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    min-height: 0;
+}
+
+#routinesListContainer::-webkit-scrollbar {
+    display: none;
+}
+
+/* ===== آیتم روال ===== */
+.routine-item {
+    border: 2px solid var(--border-color-strong);
+    border-radius: clamp(10px, 2vh, 16px);
+    padding: clamp(12px, 2vh, 18px) clamp(14px, 2.5vw, 20px);
+    transition: all .2s ease;
+    position: relative;
+    box-shadow: 0 2px 8px var(--shadow-color), 0 0 40px var(--primary-color-glow);
+    background: var(--bg-card);
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.routine-item:active {
+    transform: scale(.97);
+}
+
+.routine-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    flex-direction: column;
+}
+
+.routine-item-title {
+    font-size: clamp(18px, 3vw, 26px);
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    direction: rtl;
+    line-height: 1.4;
+}
+
+.routine-item-subtitle {
+    font-size: clamp(13px, 1.8vw, 16px);
+    color: var(--text-secondary);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    direction: rtl;
+    line-height: 1.5;
+}
+
+.routine-item-divider {
+    width: 100%;
+    height: 2px;
+    background: var(--border-color-strong);
+    margin: clamp(6px, 0.8vh, 10px) 0;
+    opacity: 0.4;
+    border: none;
+}
+
+.routine-item-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 6px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: clamp(4px, 0.6vh, 8px);
+}
+
+.routine-item-left {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    flex-wrap: wrap;
+    order: 0;
+}
+
+.routine-item-right {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+    order: 1;
+}
+
+.routine-item-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+    transition: all .2s ease;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(34px, 5vw, 44px);
+    height: clamp(34px, 5vw, 44px);
+    border-radius: 6px;
+}
+
+.routine-item-btn:active {
+    transform: scale(.85);
+}
+
+.routine-item-btn svg {
+    width: clamp(22px, 3.5vw, 30px);
+    height: clamp(22px, 3.5vw, 30px);
+    display: block;
+    transition: all .2s ease;
+}
+
+.routine-item-btn.edit svg {
+    fill: var(--primary-color);
+    color: var(--primary-color);
+    stroke: var(--primary-color);
+}
+
+.routine-item-btn.delete svg {
+    fill: var(--primary-color);
+    color: var(--primary-color);
+    stroke: var(--primary-color);
+}
+
+.routine-item-count {
+    font-size: clamp(13px, 1.8vw, 16px);
+    color: var(--text-secondary);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+.routine-item-count .count-number {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.routine-empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(14px, 3vh, 24px);
+    text-align: center;
+    padding: clamp(18px, 4vh, 36px);
+}
+
+.routine-empty-icon {
+    font-size: clamp(44px, 10vw, 68px);
+    opacity: .3;
+}
+
+.routine-empty-text {
+    font-size: clamp(16px, 3vw, 22px);
+    color: var(--text-secondary);
+    line-height: 1.8;
+    max-width: 320px;
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+}
+
+.routine-empty-text .highlight {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* ============================================
+===== صفحه ساخت روال (انتخاب ذکرها) =====
+============================================ */
+
+#routineBuilderList {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.2vh, 14px);
+    overflow-y: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+#routineBuilderList::-webkit-scrollbar {
+    display: none;
+}
+
+.routine-builder-item {
+    border: 2px solid var(--border-color-strong);
+    border-radius: clamp(10px, 2vh, 16px);
+    padding: clamp(10px, 2vh, 18px) clamp(12px, 2.5vw, 20px);
+    transition: all .2s ease;
+    position: relative;
+    box-shadow: 0 2px 8px var(--shadow-color), 0 0 40px var(--primary-color-glow);
+    background: var(--bg-card);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    flex-direction: row-reverse;
+}
+
+.routine-builder-item:active {
+    transform: scale(.97);
+}
+
+.routine-builder-item-checkbox {
+    width: clamp(28px, 4vw, 36px);
+    height: clamp(28px, 4vw, 36px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all .2s ease;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0;
+    box-shadow: none !important;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.routine-builder-item-checkbox svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    stroke: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.routine-builder-item-checkbox.checked svg {
+    stroke: var(--primary-color);
+}
+
+.routine-builder-item-checkbox.checked {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.routine-builder-item-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: right;
+}
+
+.routine-builder-item-text {
+    font-size: clamp(18px, 3.5vw, 28px);
+    font-weight: bold;
+    font-family: 'Quran','Love',Tahoma,'Vazirmatn',sans-serif;
+    color: var(--text-primary);
+    direction: rtl;
+    line-height: 1.5;
+    text-align: right;
+}
+
+.routine-builder-item-meaning {
+    font-size: clamp(13px, 2vw, 17px);
+    color: var(--text-secondary);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    direction: rtl;
+    line-height: 1.4;
+    text-align: right;
+}
+
+/* ===== فوتر صفحه انتخاب ذکر ===== */
+.routine-builder-footer {
+    display: none;
+    flex-shrink: 0;
+    padding: clamp(6px, 1vh, 12px) clamp(12px, 2.5vw, 20px);
+    border-top: 2px solid var(--border-color-strong);
+    background: var(--bg-card);
+    box-shadow: 0 -4px 20px var(--shadow-color);
+    gap: clamp(8px, 1.5vw, 16px);
+    justify-content: space-between;
+    align-items: center;
+    direction: rtl;
+    min-height: clamp(44px, 6vh, 56px);
+}
+
+.routine-builder-footer.show {
+    display: flex !important;
+}
+
+.routine-builder-count {
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 900;
+    color: var(--primary-color);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    min-width: 50px;
+    text-align: center;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: 0;
+    flex-shrink: 0;
+}
+
+.routine-builder-cancel {
+    padding: clamp(8px, 1.2vh, 14px) clamp(16px, 2.5vw, 24px);
+    border-radius: clamp(10px, 2vh, 14px);
+    font-size: clamp(14px, 2.2vw, 18px);
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    transition: all .2s ease;
+    border: 2px solid var(--border-color-strong);
+    min-width: 60px;
+    text-align: center;
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+    order: 1;
+    flex: 1;
+}
+
+.routine-builder-confirm {
+    padding: clamp(8px, 1.2vh, 14px) clamp(16px, 2.5vw, 24px);
+    border-radius: clamp(10px, 2vh, 14px);
+    font-size: clamp(14px, 2.2vw, 18px);
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    transition: all .2s ease;
+    border: 2px solid var(--primary-color);
+    min-width: 60px;
+    text-align: center;
+    background: var(--primary-color);
+    color: #ffffff;
+    box-shadow: 0 0 30px var(--primary-color-alpha);
+    order: 2;
+    flex: 1;
+}
+
+.routine-builder-confirm:disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.routine-builder-cancel:active,
+.routine-builder-confirm:active {
+    transform: scale(.95);
+}
+
+/* ============================================
+===== صفحه تنظیم روال (عنوان + تعداد) =====
+============================================ */
+
+.routine-setup-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 2vh, 18px);
+    padding: clamp(8px, 1.5vh, 16px) 0;
+    overflow-y: auto;
+}
+
+.routine-setup-group {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(4px, 0.6vh, 8px);
+}
+
+.routine-setup-group label {
+    font-size: clamp(14px, 2.2vw, 18px);
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.routine-setup-group .required {
+    color: #f87171;
+}
+
+.routine-setup-group input[type="text"] {
+    background: var(--bg-input);
+    border: 2px solid var(--border-color-strong);
+    border-radius: clamp(10px, 2vh, 14px);
+    padding: clamp(10px, 1.8vh, 15px) clamp(12px, 2vw, 16px);
+    font-size: clamp(16px, 2.5vw, 20px);
+    color: var(--text-primary);
+    outline: none;
+    font-family: 'Love', Tahoma, 'Vazirmatn', sans-serif;
+    transition: all .3s ease;
+    box-shadow: 0 2px 6px var(--shadow-color);
+    width: 100%;
+}
+
+.routine-setup-group input[type="text"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 30px var(--primary-color-glow-strong);
+}
+
+.routine-setup-divider {
+    width: 100%;
+    height: 2px;
+    background: var(--border-color-strong);
+    opacity: 0.25;
+    border-radius: 2px;
+}
+
+.routine-setup-title {
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: right;
+}
+
+#routineSetupList {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.2vh, 14px);
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 8px;
+}
+
+/* ===== آیتم ذکر در صفحه تنظیم ===== */
+.routine-setup-item {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(4px, 0.6vh, 8px);
+    padding: clamp(8px, 1.2vh, 14px) clamp(10px, 2vw, 16px);
+    border: 2px solid var(--border-color-strong);
+    border-radius: clamp(10px, 2vh, 14px);
+    background: var(--bg-card);
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.routine-setup-item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(8px, 1.5vw, 14px);
+    width: 100%;
+}
+
+.routine-setup-item-text {
+    flex: 1;
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: bold;
+    font-family: 'Quran','Love',Tahoma,'Vazirmatn',sans-serif;
+    color: var(--text-primary);
+    direction: rtl;
+    line-height: 1.6;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    text-align: right;
+}
+
+.routine-setup-item-count {
+    display: flex;
+    align-items: center;
+    gap: clamp(4px, 0.6vw, 8px);
+    flex-shrink: 0;
+}
+
+.routine-setup-item-count-label {
+    font-size: clamp(12px, 1.6vw, 15px);
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    white-space: nowrap;
+}
+
+.routine-setup-item-input {
+    width: clamp(60px, 10vw, 80px);
+    padding: clamp(4px, 0.6vh, 8px) clamp(6px, 1vw, 10px);
+    border: 2px solid var(--border-color-strong);
+    border-radius: clamp(8px, 1.5vh, 12px);
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-weight: 700;
+    text-align: center;
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    outline: none;
+    transition: all .3s ease;
+}
+
+.routine-setup-item-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 30px var(--primary-color-alpha);
+    transform: scale(1.02);
+}
+
+.routine-setup-item-input::placeholder {
+    color: var(--text-muted);
+    font-weight: 400;
+    font-size: clamp(12px, 1.6vw, 16px);
+}
+
+.routine-setup-item-input::-webkit-inner-spin-button,
+.routine-setup-item-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.routine-setup-item-input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.routine-setup-item-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: clamp(6px, 1vw, 10px);
+    padding-right: clamp(4px, 0.6vw, 8px);
+    direction: ltr;
+}
+
+.routine-setup-item-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    transition: all .2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.routine-setup-item-btn:active {
+    transform: scale(.85);
+}
+
+.routine-setup-item-btn.delete svg {
+    stroke: #ef4444;
+}
+
+.routine-setup-item-btn.edit svg {
+    stroke: var(--primary-color);
+}
+
+.routine-setup-item-btn:hover {
+    background: var(--primary-color-alpha);
+}
+
+.routine-setup-item-btn.delete:hover {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.routine-setup-item.add-manual {
+    border: 2px dashed var(--border-color-strong);
+    background: transparent;
+    justify-content: center;
+    padding: clamp(14px, 2.5vh, 22px);
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.routine-setup-item.add-manual:active {
+    transform: scale(.97);
+}
+
+.routine-setup-add-manual-btn {
+    background: transparent;
+    border: none;
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    transition: all .3s ease;
+    padding: 4px 12px;
+}
+
+.routine-setup-add-manual-btn:hover {
+    color: var(--primary-color);
+}
+
+/* ===== فوتر صفحه تنظیم ===== */
+.routine-setup-footer {
+    display: flex;
+    flex-shrink: 0;
+    padding: clamp(6px, 1vh, 12px) clamp(12px, 2.5vw, 20px);
+    border-top: 2px solid var(--border-color-strong);
+    background: var(--bg-card);
+    box-shadow: 0 -4px 20px var(--shadow-color);
+    gap: clamp(10px, 2vw, 20px);
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+    min-height: clamp(44px, 6vh, 56px);
+    flex-wrap: wrap;
+    scroll-margin-bottom: 20px;
+}
+
+.routine-setup-footer .routine-setup-cancel {
+    padding: clamp(10px, 1.5vh, 16px) clamp(20px, 4vw, 36px);
+    border-radius: clamp(10px, 2vh, 14px);
+    font-size: clamp(14px, 2.2vw, 18px);
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    transition: all .2s ease;
+    border: 2px solid #ef4444;
+    min-width: 60px;
+    text-align: center;
+    background: #ef4444;
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex: 1;
+    max-width: 180px;
+}
+
+.routine-setup-footer .routine-setup-cancel svg {
+    stroke: #ffffff;
+    width: clamp(18px, 2.5vw, 22px);
+    height: clamp(18px, 2.5vw, 22px);
+}
+
+.routine-setup-footer .routine-setup-cancel:active {
+    transform: scale(.95);
+}
+
+.routine-setup-footer .routine-setup-confirm {
+    padding: clamp(10px, 1.5vh, 16px) clamp(20px, 4vw, 36px);
+    border-radius: clamp(10px, 2vh, 14px);
+    font-size: clamp(14px, 2.2vw, 18px);
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+    transition: all .2s ease;
+    border: 2px solid var(--primary-color);
+    min-width: 60px;
+    text-align: center;
+    background: var(--primary-color);
+    color: #ffffff;
+    box-shadow: 0 4px 16px var(--shadow-color), 0 0 30px var(--primary-color-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex: 1;
+    max-width: 180px;
+}
+
+.routine-setup-footer .routine-setup-confirm svg {
+    stroke: #ffffff;
+    width: clamp(18px, 2.5vw, 22px);
+    height: clamp(18px, 2.5vw, 22px);
+}
+
+.routine-setup-footer .routine-setup-confirm:active {
+    transform: scale(.95);
+}
+
+.routine-setup-footer .routine-setup-confirm:disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* ============================================
+===== دیالوگ =====
+============================================ */
+
+#dialogInput.dialog-input {
+    font-size: clamp(18px, 3vw, 26px);
+    padding: clamp(12px, 2vh, 18px) clamp(14px, 2.5vw, 20px);
+    text-align: right;
+    font-family: 'Quran','Love',Tahoma,'Vazirmatn',sans-serif;
+}
+
+#dialogEditText.dialog-input,
+#dialogEditTarget.dialog-input {
+    font-size: clamp(16px, 2.8vw, 22px);
+    padding: clamp(10px, 1.8vh, 16px) clamp(12px, 2vw, 18px);
+    text-align: center;
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+}
+
+/* ============================================
+===== صفحه شمارنده روال =====
+============================================ */
+
+.routineCounterMain {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(8px, 1.8vh, 20px) clamp(10px, 2.5vw, 24px);
+    gap: clamp(6px, 1vh, 12px);
+    overflow: hidden;
+    min-height: 0;
+}
+
+.routine-counter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(4px, 0.6vh, 8px) clamp(8px, 1.2vw, 14px);
+    flex-shrink: 0;
+    direction: rtl;
+}
+
+.routine-counter-title {
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+}
+
+.routine-counter-progress {
+    font-size: clamp(14px, 2vw, 18px);
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-family: 'Love',Tahoma,'Vazirmatn',sans-serif;
+}
+
+/* ============================================
+===== حالت روشن/تاریک =====
+============================================ */
+
+body.light .routines-header-bar {
+    background: var(--bg-card);
+}
+
+body.light .routine-item {
+    background: var(--bg-card);
+}
+
+body.light .routine-builder-item {
+    background: var(--bg-card);
+}
+
+body.light .routine-setup-item {
+    background: var(--bg-card);
+}
+
+body.light .routine-setup-footer {
+    background: var(--bg-card);
+}
+
+body.light .routine-setup-item-input {
+    background: var(--bg-input);
+}
+
+body.dark .routines-header-bar {
+    background: transparent;
+}
+
+body.dark .routine-item {
+    background: var(--bg-card);
+}
+
+body.dark .routine-builder-item {
+    background: var(--bg-card);
+}
+
+body.dark .routine-setup-item {
+    background: var(--bg-card);
+}
+
+body.dark .routine-setup-footer {
+    background: transparent;
+}
+
+body.dark .routine-setup-item-input {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark .routine-setup-item.add-manual {
+    background: transparent;
+}
+
+body.dark .routine-setup-add-manual-btn {
+    color: var(--text-secondary);
+}
+
+body.dark .routine-setup-add-manual-btn:hover {
+    color: var(--primary-color);
+}
+
+/* ============================================
+===== ریسپانسیو =====
+============================================ */
+
+@media (max-width: 480px) {
+    .routine-setup-item-row {
+        flex-wrap: wrap;
+        gap: clamp(4px, 0.6vw, 8px);
+    }
+    
+    .routine-setup-item-text {
+        flex: 1 1 100%;
+        text-align: right;
+        white-space: normal;
+        -webkit-line-clamp: 1;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .routine-setup-item-count {
+        flex: 1;
+        justify-content: flex-start;
+    }
+    
+    .routine-setup-item-input {
+        width: clamp(50px, 15vw, 70px);
+    }
+    
+    .routine-setup-footer {
+        gap: clamp(8px, 1.5vw, 14px);
+        flex-wrap: wrap;
+    }
+    
+    .routine-setup-footer .routine-setup-cancel,
+    .routine-setup-footer .routine-setup-confirm {
+        padding: clamp(8px, 1.2vh, 12px) clamp(14px, 2.5vw, 20px);
+        font-size: clamp(13px, 2.2vw, 16px);
+        min-width: 50px;
+        max-width: 140px;
+    }
+    
+    .routine-builder-footer {
+        gap: clamp(8px, 1.5vw, 14px);
+        flex-wrap: wrap;
+    }
+    
+    .routine-builder-cancel,
+    .routine-builder-confirm {
+        padding: clamp(8px, 1.2vh, 12px) clamp(14px, 2.5vw, 20px);
+        font-size: clamp(13px, 2.2vw, 16px);
+        min-width: 50px;
+        flex: 1;
+    }
+    
+    .routine-builder-count {
+        min-width: 40px;
+        font-size: clamp(22px, 4.5vw, 32px);
+        order: 0;
+    }
+}
+
+@media (max-width: 380px) {
+    .routine-setup-item-input {
+        width: clamp(40px, 12vw, 60px);
+        font-size: clamp(14px, 2.2vw, 18px);
+        padding: clamp(3px, 0.5vh, 6px) clamp(4px, 0.6vw, 6px);
+    }
+    
+    .routine-setup-item-btn svg {
+        width: 16px !important;
+        height: 16px !important;
+    }
+}
